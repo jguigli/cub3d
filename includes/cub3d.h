@@ -17,8 +17,8 @@
 
 # define BUFFER_SIZE 50
 
-# define SCREEN_H 1080
-# define SCREEN_W 1920
+# define SCREEN_H 600
+# define SCREEN_W 800
 # define IMG_W 32
 # define IMG_H 32
 
@@ -62,15 +62,7 @@ typedef struct s_data
 	int		pos_x;
 	int		count_move;
 	int		collectible_count;
-	t_xpm	character_front;
-	t_xpm	character_back;
-	t_xpm	character_right;
-	t_xpm	character_left;
-	t_xpm	wall;
-	t_xpm	floor;
-	t_xpm	collectible;
-	t_xpm	exit;
-	t_map	check_map;
+	t_map	c_map;
 }	t_data;
 
 typedef struct	s_ray
@@ -84,21 +76,21 @@ typedef struct	s_ray
 	double		raydirx; //calcul de direction x du rayon
 	double		raydiry; //calcul de direction y du rayon
 	double		camerax; //point x sur la plan camera : Gauche ecran = -1, milieu = 0, droite = 1
-	int		mapx; // coordonée x du carré dans lequel est pos
-	int		mapy; // coordonnée y du carré dans lequel est pos
+	int			mapx; // coordonée x du carré dans lequel est pos
+	int			mapy; // coordonnée y du carré dans lequel est pos
 	double		sidedistx; //distance que le rayon parcours jusqu'au premier point d'intersection vertical (=un coté x)
 	double		sidedisty; //distance que le rayon parcours jusqu'au premier point d'intersection horizontal (= un coté y)
 	double		deltadistx; //distance que rayon parcours entre chaque point d'intersection vertical
 	double		deltadisty; //distance que le rayon parcours entre chaque point d'intersection horizontal
-	int		stepx; // -1 si doit sauter un carre dans direction x negative, 1 dans la direction x positive
-	int		stepy; // -1 si doit sauter un carre dans la direction y negative, 1 dans la direction y positive
-	int		hit; // 1 si un mur a ete touche, 0 sinon
-	int		side; // 0 si c'est un cote x qui est touche (vertical), 1 si un cote y (horizontal)
+	int			stepx; // -1 si doit sauter un carre dans direction x negative, 1 dans la direction x positive
+	int			stepy; // -1 si doit sauter un carre dans la direction y negative, 1 dans la direction y positive
+	int			hit; // 1 si un mur a ete touche, 0 sinon
+	int			side; // 0 si c'est un cote x qui est touche (vertical), 1 si un cote y (horizontal)
 	double		perpwalldist; // distance du joueur au mur
-	int		lineheight; //hauteur de la ligne a dessiner
-	int		drawstart; //position de debut ou il faut dessiner
-	int		drawend; //position de fin ou il faut dessiner
-	int		x; //permet de parcourir tous les rayons
+	int			lineheight; //hauteur de la ligne a dessiner
+	int			drawstart; //position de debut ou il faut dessiner
+	int			drawend; //position de fin ou il faut dessiner
+	int			x; //permet de parcourir tous les rayons
 }	t_ray;
 
 int		get_number_line(char *mapname);
@@ -144,5 +136,6 @@ int		after_event(int keysym, t_data *game);
 
 
 int		if_map_not_good(char **map);
+void	initialisation_struct_raycasting(t_ray *ray);
 
 #endif
