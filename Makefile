@@ -2,12 +2,12 @@ SRC_M = ./srcs/main.c \
 		./srcs/manage_map/check_map.c \
 		./srcs/manage_map/parse_map.c \
 		./gnl/get_next_line.c \
+		./srcs/manage_window/create_window.c \
+		./srcs/manage_game/init_game.c \
 		#./srcs/manage_error/check_error.c \
 		./srcs/manage_game/close_game.c \
-		./srcs/manage_game/init_game.c \
 		./srcs/manage_game/launch_game.c \
 		./srcs/manage_map/check_map2.c \
-		./srcs/manage_map/create_window.c \
 
 SRC_B =
 
@@ -44,10 +44,10 @@ all:			$(NAME)
 bonus:			$(NAME_BONUS)
 
 $(NAME):		$(LIBFT) $(MINILIBX) $(OBJECTS) $(HEADER)
-				$(CC) $(CFLAGS) $(OBJECTS) $(LIBFT) $(FT_PRINTF) $(MINILIBX) $(MLXFLAGS) -o $(NAME)
+				$(CC) $(CFLAGS) $(OBJECTS) $(LIBFT) $(MINILIBX) $(MLXFLAGS) -o $(NAME)
 
-$(NAME_BONUS):	$(LIBFT) $(FT_PRINTF) $(MINILIBX) $(OBJECTS_BONUS) $(HEADER_BONUS)
-				$(CC) $(CFLAGS) $(OBJECTS_BONUS) $(LIBFT) $(FT_PRINTF) $(MINILIBX) $(MLXFLAGS) -o $(NAME_BONUS)
+$(NAME_BONUS):	$(LIBFT) $(MINILIBX) $(OBJECTS_BONUS) $(HEADER_BONUS)
+				$(CC) $(CFLAGS) $(OBJECTS_BONUS) $(LIBFT) $(MINILIBX) $(MLXFLAGS) -o $(NAME_BONUS)
 
 $(LIBFT):
 				$(MAKE) -C $(LIBFT_PATH)
@@ -62,7 +62,6 @@ clean:
 
 fclean:			clean
 				$(MAKE) -C $(LIBFT_PATH) fclean
-				$(MAKE) -C $(MINILIBX_PATH) fclean
 				$(RM) $(NAME) $(NAME_BONUS)
 
 re:				fclean all

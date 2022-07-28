@@ -30,14 +30,14 @@ void	create_window(t_data *game)
 	game->mlx_ptr = mlx_init();
 	if (game->mlx_ptr == NULL)
 	{
-		close_struct(game);
+		//close_struct(game);
 		exit(EXIT_FAILURE);
 	}
 	game->win_ptr = mlx_new_window(game->mlx_ptr,
-			game->size_x * IMG_W, game->size_y * IMG_H, "Bomberlike");
+			SCREEN_W, SCREEN_H, "CUB3D");
 	if (game->win_ptr == NULL)
 	{
-		close_struct(game);
+		//close_struct(game);
 		exit(EXIT_FAILURE);
 	}
 }
