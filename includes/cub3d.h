@@ -27,6 +27,24 @@
 # define LEFT -1
 # define RIGHT 1
 
+/*AZERYTY*/
+# define ROTATE_LEFT 65361
+# define ROTATE_RIGHT 65363
+# define FORWARD_W_Z 122
+# define BACK_S_S 115
+# define RIGHT_D_D 100
+# define LEFT_A_Q 113
+
+/*QWERTY*/
+/*
+# define ROTATE_LEFT 65361
+# define ROTATE_RIGHT 65363
+# define FORWARD_W_Z 119
+# define BACK_S_S 115
+# define RIGHT_D_D 100
+# define LEFT_A_Q 97
+*/
+
 typedef struct s_xpm
 {
 	void	*mlx_img;
@@ -93,6 +111,17 @@ typedef struct	s_ray
 	int			x; //permet de parcourir tous les rayons
 }	t_ray;
 
+typedef struct s_main
+{
+	int		scr_y;
+	int		scr_x;
+	int		c;
+	int		f;
+	t_data	*game;
+	t_xpm	*img;
+	t_ray	*ray;
+}	t_main;
+
 int		get_number_line(char *mapname);
 int		check_error_map(t_data *game);
 int		check_error_map2(t_data *game);
@@ -104,7 +133,6 @@ int		check_last_row(t_data *game);
 int		check_mid_row(t_data *game);
 int		check_different_length(t_data *game);
 int		check_item_map(t_data *game);
-void	initialisation_struct_game(t_data *game, char *mapname);
 int		check_end_line(char *s);
 char	*readbuffer(int fd, char *tank);
 char	*save(char *tank);
@@ -117,7 +145,6 @@ void	load_xpm2(t_data *game);
 void	put_image(t_data *game, void *img, int x, int y);
 void	get_the_right_image(char c, t_data *game, int i, int j);
 void	launch_game(t_data *game);
-void	create_window(t_data *game);
 int		handle_keypress(int keysym, t_data *data);
 int		handle_cross(t_data *data);
 int		handle_no_event(void);
@@ -136,6 +163,9 @@ int		after_event(int keysym, t_data *game);
 
 
 int		if_map_not_good(char **map);
-void	initialisation_struct_raycasting(t_ray *ray);
+void	initialisation_struct_raycasting(t_main *main);
+void	initialisation_struct_game(t_main *main, char *mapname);
+void	initialisation_struct_main(t_main *main, char *mapname);
+void	create_window(t_main *main);
 
 #endif

@@ -25,17 +25,17 @@ void	count_line(t_data *game, char *mapname)
 	close (fd);
 }
 
-void	create_window(t_data *game)
+void	create_window(t_main *main)
 {
-	game->mlx_ptr = mlx_init();
-	if (game->mlx_ptr == NULL)
+	main->game->mlx_ptr = mlx_init();
+	if (main->game->mlx_ptr == NULL)
 	{
 		//close_struct(game);
 		exit(EXIT_FAILURE);
 	}
-	game->win_ptr = mlx_new_window(game->mlx_ptr,
+	main->game->win_ptr = mlx_new_window(main->game->mlx_ptr,
 			SCREEN_W, SCREEN_H, "CUB3D");
-	if (game->win_ptr == NULL)
+	if (main->game->win_ptr == NULL)
 	{
 		//close_struct(game);
 		exit(EXIT_FAILURE);
