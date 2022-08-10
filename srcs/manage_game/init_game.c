@@ -1,33 +1,35 @@
 #include "../../includes/cub3d.h"
 
-int	get_number_line(char *mapname)
+t_map	*initialisation_struct_map(void)
 {
-	char	*line;
-	int		fd;
-	int		count;
+	t_map *c_map;
 
-	fd = open(mapname, O_RDONLY);
-	line = get_next_line(fd);
-	count = 0;
-	while (line != NULL)
-	{
-		count++;
-		free(line);
-		line = get_next_line(fd);
-	}
-	free(line);
-	close(fd);
-	return (count);
+	c_map = malloc(sizeof(t_map));
+	if (!c_map)
+		return (NULL);
+	c_map->line = NULL;
+	c_map->linejoin = NULL;
+	c_map->length = 0;
+	c_map->length2 = 0;
+	c_map->fd = 0;
+	c_map->count_line = 0;
+	c_map->line_max = 0;
+	c_map->position = 0;
+	c_map->exit = 0;
+	c_map->collectible = 0;
+	return (c_map);
 }
 
-void	initialisation_struct_game(t_main *main, char *mapname)
+t_data	*initialisation_struct_game(void)
 {
-	main->game = malloc(sizeof(t_data));
-	if (!main->game)
-		return ;
-	main->game->mlx_ptr = NULL;
-	main->game->win_ptr = NULL;
-	main->game->map = parse_map(mapname);
+	t_data *game;
+
+	game = malloc(sizeof(t_data));
+	if (!game)
+		return (NULL);
+	game->mlx_ptr = NULL;
+	game->win_ptr = NULL;
+	game->map = NULL;
 // 	game->size_y = 0;
 // 	game->size_x = 0;
 // 	count_line(game, mapname);
@@ -44,60 +46,74 @@ void	initialisation_struct_game(t_main *main, char *mapname)
 // 	game->check_map.position = 0;
 // 	game->check_map.exit = 0;
 // 	game->check_map.collectible = 0;
+	return (game);
 }
 
-void	initialisation_struct_raycasting(t_main *main)
+t_ray	*initialisation_struct_raycasting(void)
 {
-	main->ray = malloc(sizeof(t_ray));
-	if (!main->ray)
-		return ;
-	main->ray->posx = 5;
-	main->ray->posy = 10;
-	main->ray->dirx = -1;
-	main->ray->diry = 0;
-	main->ray->planx = 0;
-	main->ray->plany = 0.66;
-	main->ray->raydirx = 0;
-	main->ray->raydiry = 0;
-	main->ray->camerax = 0;
-	main->ray->mapx = 0;
-	main->ray->mapy = 0;
-	main->ray->sidedistx = 0;
-	main->ray->sidedisty = 0;
-	main->ray->deltadistx = 0;
-	main->ray->deltadisty = 0;
-	main->ray->stepx = 0;
-	main->ray->stepy = 0;
-	main->ray->hit = 0;
-	main->ray->side = 0;
-	main->ray->perpwalldist = 0;
-	main->ray->lineheight = 0;
-	main->ray->drawstart = 0;
-	main->ray->drawend = 0;
-	main->ray->x = 0;
+	t_ray *ray;
+
+	ray = malloc(sizeof(t_ray));
+	if (!ray)
+		return (NULL);
+	ray->posx = 5;
+	ray->posy = 10;
+	ray->dirx = -1;
+	ray->diry = 0;
+	ray->planx = 0;
+	ray->plany = 0.66;
+	ray->raydirx = 0;
+	ray->raydiry = 0;
+	ray->camerax = 0;
+	ray->mapx = 0;
+	ray->mapy = 0;
+	ray->sidedistx = 0;
+	ray->sidedisty = 0;
+	ray->deltadistx = 0;
+	ray->deltadisty = 0;
+	ray->stepx = 0;
+	ray->stepy = 0;
+	ray->hit = 0;
+	ray->side = 0;
+	ray->perpwalldist = 0;
+	ray->lineheight = 0;
+	ray->drawstart = 0;
+	ray->drawend = 0;
+	ray->x = 0;
+	return (ray);
 }
 
-void	initialisation_struct_xpm(t_main *main)
+t_xpm	*initialisation_struct_xpm(void)
 {
-	main->img = malloc(sizeof(t_xpm));
-	if (!main->img)
-		return ;
-	main->img->mlx_img= NULL;
-	main->img->addr = NULL;
-	main->img->bpp = 0;
-	main->img->line_len = 0;
-	main->img->endian = 0;
-	main->img->width = 0;
-	main->img->height = 0;
+	t_xpm	*img;
+
+	img = malloc(sizeof(t_xpm));
+	if (!img)
+		return (NULL);
+	img->mlx_img= NULL;
+	img->addr = NULL;
+	img->bpp = 0;
+	img->line_len = 0;
+	img->endian = 0;
+	img->width = 0;
+	img->height = 0;
+	return (img);
 }
 
-void	initialisation_struct_main(t_main *main, char *mapname)
+t_main	*initialisation_struct_main(void)
 {
+	t_main	*main;
+	
+	main = malloc(sizeof(t_main));
+	if (!main)
+		return (NULL);
 	main->scr_x = 800;
 	main->scr_y = 600;
 	main->c = 0;
 	main->f = 0;
-	initialisation_struct_game(main, mapname);
-	initialisation_struct_raycasting(main);
-	initialisation_struct_xpm(main);
+	main->c_map = initialisation_struct_map(); // mettre en int
+	main->game = initialisation_struct_game(); // mettre en int
+	main->ray = initialisation_struct_raycasting(); // mettre en int
+	main->img = initialisation_struct_xpm(); // mettre en int
+	return (main);
 }

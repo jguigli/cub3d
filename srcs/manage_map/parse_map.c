@@ -23,13 +23,8 @@ char	*get_string_map(char *mapname)
 	return (str);
 }
 
-char	**parse_map(char *mapname)
+void	parse_map(t_main *main)
 {
-	char	**map;
-	char	*str;
-
-	str = get_string_map(mapname);
-	map = ft_split(str, '\n');
-	free (str);
-	return (map);
+	main->game->map = ft_split(main->c_map->linejoin, '\n');
+	free (main->c_map->linejoin);
 }

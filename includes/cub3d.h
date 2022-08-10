@@ -59,6 +59,7 @@ typedef struct s_xpm
 typedef struct s_map
 {
 	char	*line;
+	char	*linejoin;
 	int		length;
 	int		length2;
 	int		fd;
@@ -74,13 +75,23 @@ typedef struct s_data
 	void	*mlx_ptr;
 	void	*win_ptr;
 	char	**map;
+	int		check_no;
+	int		check_so;
+	int		check_we;
+	int		check_ea;
+	int		check_f;
+	int		check_c;
+	char	*tex_no;
+	char	*tex_so;
+	char	*tex_we;
+	char	*tex_ea;
+	char	*tex_f;
+	char	*tex_c;
 	int		size_y;
 	int		size_x;
 	int		pos_y;
 	int		pos_x;
 	int		count_move;
-	int		collectible_count;
-	t_map	c_map;
 }	t_data;
 
 typedef struct	s_ray
@@ -120,6 +131,7 @@ typedef struct s_main
 	t_data	*game;
 	t_xpm	*img;
 	t_ray	*ray;
+	t_map	*c_map;
 }	t_main;
 
 int		get_number_line(char *mapname);
@@ -139,7 +151,6 @@ char	*save(char *tank);
 char	*get_line(char *str);
 char	*get_next_line(int fd);
 char	*get_string_map(char *mapname);
-char	**parse_map(char *mapname);
 void	load_xpm(t_data *game);
 void	load_xpm2(t_data *game);
 void	put_image(t_data *game, void *img, int x, int y);
@@ -163,9 +174,18 @@ int		after_event(int keysym, t_data *game);
 
 
 int		if_map_not_good(char **map);
-void	initialisation_struct_raycasting(t_main *main);
-void	initialisation_struct_game(t_main *main, char *mapname);
-void	initialisation_struct_main(t_main *main, char *mapname);
+t_map	*initialisation_struct_map(void);
+t_ray	*initialisation_struct_raycasting(void);
+t_data	*initialisation_struct_game(void);
+t_xpm	*initialisation_struct_xpm(void);
+t_main	*initialisation_struct_main(void);
 void	create_window(t_main *main);
+int		check_file_name(char *mapname);
+int		draw_map(t_main *main);
+void	parse_map(t_main *main);
+void	read_file(t_main *main);
+void    check_texture(t_main *main);
+int		check_count_texture(t_main *main);
+int		manage_file_map(t_main *main, char *mapname);
 
 #endif

@@ -1,9 +1,12 @@
 SRC_M = ./srcs/main.c \
 		./srcs/manage_map/check_map.c \
+		./srcs/manage_map/check_map2.c \
 		./srcs/manage_map/parse_map.c \
 		./gnl/get_next_line.c \
 		./srcs/manage_window/create_window.c \
 		./srcs/manage_game/init_game.c \
+		./srcs/manage_game/raycast.c \
+		./srcs/manage_map/check_fd.c \
 		#./srcs/manage_error/check_error.c \
 		./srcs/manage_game/close_game.c \
 		./srcs/manage_game/launch_game.c \
@@ -27,7 +30,7 @@ NAME_BONUS		=	cub3d_bonus
 CC				=	gcc
 RM				=	rm -f
 
-CFLAGS			=	-Wall -Wextra -Werror -g3 #-fsanitize=address
+CFLAGS			=	-Wall -Wextra -Werror -g3 -fsanitize=address
 MLXFLAGS		=	-I -g -L /usr/X11/lib -Lincludes -L./mlbx -Imlx -lXext -lX11 -lz -lm
 
 LIBFT_PATH		=	./libft

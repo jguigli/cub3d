@@ -1,53 +1,5 @@
 #include "../../includes/cub3d.h"
 
-// int	check_error_map2(t_data *game)
-// {
-// 	while (game->check_map.line != NULL)
-// 	{
-// 		if (check_different_length(game))
-// 			return (1);
-// 		if (game->check_map.count_line == 1)
-// 		{
-// 			if (check_first_row(game))
-// 				return (1);
-// 		}
-// 		else if (game->check_map.count_line > 0
-// 			&& game->check_map.count_line < game->check_map.line_max)
-// 		{
-// 			if (check_mid_row(game))
-// 				return (1);
-// 		}
-// 		else if (game->check_map.count_line == game->check_map.line_max)
-// 		{
-// 			if (check_last_row(game))
-// 				return (1);
-// 		}
-// 		free(game->check_map.line);
-// 		game->check_map.line = get_next_line(game->check_map.fd);
-// 		game->check_map.count_line++;
-// 	}
-// 	return (0);
-// }
-
-// int	check_error_map(t_data *game)
-// {
-// 	if (check_error_map2(game))
-// 	{
-// 		while (game->check_map.line)
-// 		{
-// 			free(game->check_map.line);
-// 			game->check_map.line = get_next_line(game->check_map.fd);
-// 		}
-// 		close(game->check_map.fd);
-// 		return (1);
-// 	}
-// 	free(game->check_map.line);
-// 	close(game->check_map.fd);
-// 	if (check_item_map(game))
-// 		return (1);
-// 	return (0);
-// }
-
 size_t	ft_strlen_double(char **tab)
 {
 	int	i;
@@ -78,22 +30,22 @@ int		check_zero(char **map, int x, int y)
 {
 	if (map[x - 1][y] != '1' && map[x - 1][y] != '0')
 	{
-		printf("\t\terr : HAUT --> valeur = %c\n", map[x - 1][y]);
+		printf("\t\terror : HAUT --> valeur = %c\n", map[x - 1][y]);
 		return (1);
 	}
 	if (map[x + 1][y] != '1' && map[x + 1][y] != '0')
 	{
-		printf("\t\terr : BAS --> valeur = %i\n", map[x + 1][y]);
+		printf("\t\terror : BAS --> valeur = %i\n", map[x + 1][y]);
 		return (1);
 	}
 	if (map[x][y - 1] != '1' && map[x][y - 1] != '0')
 	{
-		printf("\t\terr : GAUCHE --> valeur = %c\n", map[x][y - 1]);
+		printf("\t\terror : GAUCHE --> valeur = %c\n", map[x][y - 1]);
 		return (1);
 	}
 	if (map[x][y + 1] != '1' && map[x][y + 1] != '0')
 	{
-		printf("\t\terr : DROITE --> valeur = %c\n", map[x][y + 1]);
+		printf("\t\terror : DROITE --> valeur = %c\n", map[x][y + 1]);
 		return (1);
 	}
 	return (0);
