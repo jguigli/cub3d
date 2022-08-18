@@ -51,7 +51,7 @@ int		check_zero(char **map, int x, int y)
 	return (0);
 }
 
-int		if_map_not_good(char **map)
+int		check_outline(char **map) // checker position du joueur avant
 {
 	size_t	x;
 	size_t	y;

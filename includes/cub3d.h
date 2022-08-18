@@ -87,6 +87,7 @@ typedef struct s_data
 	char	*tex_ea;
 	char	*tex_f;
 	char	*tex_c;
+	int		pos_ok;
 	int		size_y;
 	int		size_x;
 	int		pos_y;
@@ -173,7 +174,7 @@ int		check_x_exit(t_data *game, char pos, int dir);
 int		after_event(int keysym, t_data *game);
 
 
-int		if_map_not_good(char **map);
+int		check_outline(char **map);
 t_map	*initialisation_struct_map(void);
 t_ray	*initialisation_struct_raycasting(void);
 t_data	*initialisation_struct_game(void);
