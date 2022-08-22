@@ -87,6 +87,8 @@ typedef struct s_data
 	char	*tex_ea;
 	char	*tex_f;
 	char	*tex_c;
+	int		color_f;
+	int		color_c;
 	int		pos_ok;
 	int		size_y;
 	int		size_x;
@@ -184,8 +186,8 @@ void	create_window(t_main *main);
 int		check_file_name(char *mapname);
 int		draw_map(t_main *main);
 void	parse_map(t_main *main);
-void	read_file(t_main *main);
-void    check_texture(t_main *main);
+int		read_file(t_main *main);
+int		check_texture(t_main *main);
 int		check_count_texture(t_main *main);
 int		manage_file_map(t_main *main, char *mapname);
 

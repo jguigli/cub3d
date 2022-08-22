@@ -21,9 +21,9 @@ int	main(int argc, char **argv, char **env)
 		printf("Error\nEmpty environnement\n");
 		return (-1);
 	}
-	//if_map_not_good(map);
 	main = initialisation_struct_main();
-	manage_file_map(main, argv[1]);
+	if (manage_file_map(main, argv[1]) == -1)
+		return (-1);
 	/******/
 	create_window(main);
 	main->img->mlx_img = mlx_new_image(main->game->mlx_ptr, main->scr_x, SCREEN_H);

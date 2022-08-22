@@ -24,6 +24,7 @@ void	my_mlx_pixel_put(t_xpm *data, int x, int y, int color)
 
 	dst = data->addr + (y * data->line_len + x * (data->bpp / 8));
 	*(unsigned int*)dst = color;
+	
 }
 
 int		draw_map(t_main *main)
@@ -61,7 +62,6 @@ int		draw_map(t_main *main)
 			main->ray->stepy = 1;
 			main->ray->sidedisty = (main->ray->mapy + 1 - main->ray->posy) * main->ray->deltadisty;
 		}
-
 		main->ray->hit = 0;
 		while (main->ray->hit == 0)
 		{
@@ -77,7 +77,7 @@ int		draw_map(t_main *main)
 				main->ray->mapy += main->ray->stepy;
 				main->ray->side = 1;
 			}
-			if (main->game->map[main->ray->mapy][main->ray->mapx] != 0)
+			if (main->game->map[main->ray->mapx][main->ray->mapy] != 0)
 				main->ray->hit = 1;
 		}
 		if (main->ray->side == 0)
