@@ -149,36 +149,141 @@ int		check_format(t_main *main)
 	return (0);
 }
 
-int	create_trgb_floor(t_main *main)
+int	create_trgb(int r, int g, int b)
 {
-	int		r;
-	int		g;
-	int		b;
+	int		t;
 
-	r = 0;
-	g = 0;
-	b = 0;
-
-	return (t << 24 | r << 16 | g << 8 | b);
-}
-
-int	create_trgb_ceilling(t_main *main)
-{
-	int		r;
-	int		g;
-	int		b;
-
-	r = 0;
-	g = 0;
-	b = 0;
-	
+	t = 0;
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
 int		manage_rgb(t_main *main)
 {
-	main->color_f = create_trgb(main);
-	main->color_c = create_trgb(main);
+	main->game->color_f = create_trgb(main->game->rgb_f[0], main->game->rgb_f[1], main->game->rgb_f[2]);
+	main->game->color_c = create_trgb(main->game->rgb_c[0], main->game->rgb_c[1], main->game->rgb_c[2]);
+	return (0);
+}
+
+int		check_color_floor(t_main *main)
+{
+	int		i;
+	int		y;
+	int		s;
+	char	*temp;
+
+	i = 0;
+	s = 0;
+	while (main->game->tex_f[i])
+	{
+		y = i;
+		while (main->game->tex_f[i] != ',' && main->game->tex_f[i])
+			i++;
+		temp = ft_substr(main->game->tex_f, y, i - y);
+		main->game->rgb_f[s] = ft_atoi(temp);
+		if (main->game->rgb_c[s] > 255 || main->game->rgb_c[s] < 0)
+		{
+			printf("Error\nOne or several numbers of floor rgb are not in the right scale\n");
+			return (1);
+		}
+		s++;
+		if (main->game->tex_f[i] == ',')
+			i++;
+		else
+			break ;
+	}
+	return (0);
+}
+
+int		check_color_ceilling(t_main *main)
+{
+	int		i;
+	int		y;
+	int		s;
+	char	*temp;
+
+	i = 0;
+	s = 0;
+	while (main->game->tex_c[i])
+	{
+		y = i;
+		while (main->game->tex_c[i] != ',' && main->game->tex_c[i])
+			i++;
+		temp = ft_substr(main->game->tex_c, y, i - y);
+		main->game->rgb_c[s] = ft_atoi(temp);
+		if (main->game->rgb_c[s] > 255 || main->game->rgb_c[s] < 0)
+		{
+			printf("Error\nOne or several numbers of ceilling rgb are not in the right scale\n");
+			return (1);
+		}
+		s++;
+		if (main->game->tex_c[i] == ',')
+			i++;
+		else
+			break ;
+	}
+	return (0);
+}
+
+int		check_comma_number(char *rgb)
+{
+	int		comma;
+	int		i;
+
+	comma = 0;
+	i = 0;
+	while (rgb[i])
+	{
+		while (rgb[i] != ',' && rgb[i])
+		{
+			if (!ft_isdigit(rgb[i]))
+			{
+				if ((rgb[i] == ' ' || rgb[i] == 9) && comma > 1
+					&& (ft_isdigit(rgb[i - 1]) || rgb[i - 1] == ' '
+					|| rgb[i - 1] == 9) && (rgb[i + 1] == ' '
+					|| rgb[i + 1] == 9 || rgb[i + 1] == '\0'))
+					;
+				else
+				{
+					printf("Error\nWrong character in rgb floor/ceilling\n");
+					return (1);
+				}
+			}
+			i++;
+		}
+		if (rgb[i] == ',')
+			comma++;
+		if (rgb[i] == ',' && rgb[i + 1] == '\0' && comma == 2)
+		{
+			printf("Error\nMissing number after comma in rgb floor/ceilling\n");
+			return (1);
+		}
+		if (rgb[i] == '\0' && comma < 2)
+		{
+			printf("Error\nIncorrect number of number in rgb floor/ceilling\n");
+			return (1);
+		}
+		i++;
+	}
+	if (comma > 2)
+	{
+		printf("Error\nIncorrect number of comma in rgb floor/ceilling \n");
+		return (1);
+	}
+	return (0);
+}
+
+int		check_color(t_main *main)
+{
+	//check_path
+	if (check_comma_number(main->game->tex_f))
+		return (1);
+	if (check_comma_number(main->game->tex_c))
+		return (1);
+	if (check_color_floor(main))
+		return (1);
+	if (check_color_ceilling(main))
+		return (1);
+	return (0);
 }
 
 int		manage_file_map(t_main *main, char *mapname)
@@ -196,6 +301,8 @@ int		manage_file_map(t_main *main, char *mapname)
 		return (-1);
 	if (check_outline(main->game->map))
 		return (-1);
+	if (check_color(main))
+		return (-1);
 	manage_rgb(main);
 	close(main->c_map->fd);
 	printf("texture N = %s\n", main->game->tex_no);
@@ -204,6 +311,14 @@ int		manage_file_map(t_main *main, char *mapname)
 	printf("texture W = %s\n", main->game->tex_we);
 	printf("texture F = %s\n", main->game->tex_f);
 	printf("texture C = %s\n", main->game->tex_c);
+	printf("texture color r_f = %d\n", main->game->rgb_f[0]);
+	printf("texture color g_f = %d\n", main->game->rgb_f[1]);
+	printf("texture color b_f = %d\n", main->game->rgb_f[2]);
+	printf("texture color r_c = %d\n", main->game->rgb_c[0]);
+	printf("texture color g_c = %d\n", main->game->rgb_c[1]);
+	printf("texture color b_c = %d\n", main->game->rgb_c[2]);
+	printf("texture color F = %d\n", main->game->color_f);
+	printf("texture color C = %d\n", main->game->color_c);
 	return (0);
 }
 
@@ -231,7 +346,7 @@ char	*crop_texture_side(t_main *main)
 	j = i;
 	while (main->c_map->line[j])
 		j++;
-	str = ft_substr(main->c_map->line, i, j);
+	str = ft_substr(main->c_map->line, i, j - i - 1);
 	return (str);
 }
 
@@ -247,7 +362,7 @@ char	*crop_texture_high(t_main *main)
 	j = i;
 	while (main->c_map->line[j])
 		j++;
-	str = ft_substr(main->c_map->line, i, j);
+	str = ft_substr(main->c_map->line, i, j - i - 1);
 	return (str);
 }
 

@@ -24,7 +24,6 @@ void	my_mlx_pixel_put(t_xpm *data, int x, int y, int color)
 
 	dst = data->addr + (y * data->line_len + x * (data->bpp / 8));
 	*(unsigned int*)dst = color;
-	
 }
 
 int		draw_map(t_main *main)
@@ -98,6 +97,7 @@ int		draw_map(t_main *main)
 		// ft_color_column(main);
 		//mlx_pixel_put(main->game->mlx_ptr, main->game->win_ptr, main->ray->drawstart, main->ray->drawend, main->c);
 		my_mlx_pixel_put(main->img, main->ray->drawstart, main->ray->drawend, main->c);
+		//mlx_put_image_to_window(main->game->mlx_ptr, main->game->win_ptr, main->img->mlx_img, 0, 0);
 		// mlx_put_image_to_window(main->game->mlx_ptr, main->game->win_ptr, main->img->mlx_img, 0, 0);
 		main->ray->x++;
 	}

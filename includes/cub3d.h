@@ -89,6 +89,8 @@ typedef struct s_data
 	char	*tex_c;
 	int		color_f;
 	int		color_c;
+	int		rgb_f[3];
+	int		rgb_c[3];
 	int		pos_ok;
 	int		size_y;
 	int		size_x;
