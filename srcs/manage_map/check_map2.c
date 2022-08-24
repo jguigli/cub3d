@@ -28,7 +28,7 @@
 
 void	stock_position_north(int x, int y, t_main *main)
 {
-	main->game->map[x][y] = '0';
+	main->game->map[y][x] = '0';
 	main->ray->posx = x;
 	main->ray->posy = y;
 	main->ray->dirx = -1;
@@ -40,7 +40,7 @@ void	stock_position_north(int x, int y, t_main *main)
 
 void	stock_position_south(int x, int y, t_main *main)
 {
-	main->game->map[x][y] = '0';
+	main->game->map[y][x] = '0';
 	main->ray->posx = x;
 	main->ray->posy = y;
 	main->ray->dirx = 1;
@@ -52,7 +52,7 @@ void	stock_position_south(int x, int y, t_main *main)
 
 void	stock_position_east(int x, int y, t_main *main)
 {
-	main->game->map[x][y] = '0';
+	main->game->map[y][x] = '0';
 	main->ray->posx = x;
 	main->ray->posy = y;
 	main->ray->dirx = 0;
@@ -64,7 +64,7 @@ void	stock_position_east(int x, int y, t_main *main)
 
 void	stock_position_west(int x, int y, t_main *main)
 {
-	main->game->map[x][y] = '0';
+	main->game->map[y][x] = '0';
 	main->ray->posx = x;
 	main->ray->posy = y;
 	main->ray->dirx = 0;
@@ -103,23 +103,23 @@ int		check_position(t_main *main)
 	int	x;
 	int	y;
 
-	x = 0;
-	while (main->game->map[x])
+	y = 0;
+	while (main->game->map[y])
 	{
-		y = 0;
-		while (main->game->map[x][y])
+		x = 0;
+		while (main->game->map[y][x])
 		{
-			if (main->game->map[x][y] == 'N')
+			if (main->game->map[y][x] == 'N')
 				stock_position_north(x, y, main);
-			else if (main->game->map[x][y] == 'S')
+			else if (main->game->map[y][x] == 'S')
 				stock_position_south(x, y, main);
-			else if (main->game->map[x][y] == 'E')
+			else if (main->game->map[y][x] == 'E')
 				stock_position_east(x, y, main);
-			else if (main->game->map[x][y] == 'W')
+			else if (main->game->map[y][x] == 'W')
 				stock_position_west(x, y, main);
-			y++;
+			x++;
 		}
-		x++;
+		y++;
 	}
 	if (main->game->pos_ok == 0)
 	{
@@ -262,7 +262,8 @@ int		check_comma_number(char *rgb)
 			printf("Error\nIncorrect number of number in rgb floor/ceilling\n");
 			return (1);
 		}
-		i++;
+		if (rgb[i] != '\0')
+			i++;
 	}
 	if (comma > 2)
 	{

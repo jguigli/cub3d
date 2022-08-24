@@ -192,5 +192,6 @@ int		read_file(t_main *main);
 int		check_texture(t_main *main);
 int		check_count_texture(t_main *main);
 int		manage_file_map(t_main *main, char *mapname);
+int		check_comma_number(char *rgb);
 
 #endif
