@@ -306,20 +306,20 @@ int		manage_file_map(t_main *main, char *mapname)
 		return (-1);
 	manage_rgb(main);
 	close(main->c_map->fd);
-	printf("texture N = %s\n", main->game->tex_no);
-	printf("texture S = %s\n", main->game->tex_so);
-	printf("texture E = %s\n", main->game->tex_ea);
-	printf("texture W = %s\n", main->game->tex_we);
-	printf("texture F = %s\n", main->game->tex_f);
-	printf("texture C = %s\n", main->game->tex_c);
-	printf("texture color r_f = %d\n", main->game->rgb_f[0]);
-	printf("texture color g_f = %d\n", main->game->rgb_f[1]);
-	printf("texture color b_f = %d\n", main->game->rgb_f[2]);
-	printf("texture color r_c = %d\n", main->game->rgb_c[0]);
-	printf("texture color g_c = %d\n", main->game->rgb_c[1]);
-	printf("texture color b_c = %d\n", main->game->rgb_c[2]);
-	printf("texture color F = %d\n", main->game->color_f);
-	printf("texture color C = %d\n", main->game->color_c);
+	// printf("texture N = %s\n", main->game->tex_no);
+	// printf("texture S = %s\n", main->game->tex_so);
+	// printf("texture E = %s\n", main->game->tex_ea);
+	// printf("texture W = %s\n", main->game->tex_we);
+	// printf("texture F = %s\n", main->game->tex_f);
+	// printf("texture C = %s\n", main->game->tex_c);
+	// printf("texture color r_f = %d\n", main->game->rgb_f[0]);
+	// printf("texture color g_f = %d\n", main->game->rgb_f[1]);
+	// printf("texture color b_f = %d\n", main->game->rgb_f[2]);
+	// printf("texture color r_c = %d\n", main->game->rgb_c[0]);
+	// printf("texture color g_c = %d\n", main->game->rgb_c[1]);
+	// printf("texture color b_c = %d\n", main->game->rgb_c[2]);
+	// printf("texture color F = %d\n", main->game->color_f);
+	// printf("texture color C = %d\n", main->game->color_c);
 	return (0);
 }
 

@@ -92,15 +92,20 @@ void	algo_dda(t_main *main)
 void	wall_dist(t_main *main)
 {
 	if (main->ray->side == 0)
-		main->ray->perpwalldist = (main->ray->mapx - main->ray->posx + (1 - main->ray->stepx) / 2) / main->ray->raydirx;
+		main->ray->perpwalldist = main->ray->sidedistx - main->ray->deltadistx; //(main->ray->mapx - main->ray->posx + (1 - main->ray->stepx) / 2) / main->ray->raydirx;
 	else
-		main->ray->perpwalldist = (main->ray->mapy - main->ray->posy + (1 - main->ray->stepy) / 2) / main->ray->raydiry;
-	if (main->ray->side == 0)
-		main->c = 0x00FF0000;
-	else
-		main->c = 0xFF0FF00;
+		main->ray->perpwalldist = main->ray->sidedisty - main->ray->deltadisty; //(main->ray->mapy - main->ray->posy + (1 - main->ray->stepy) / 2) / main->ray->raydiry;
+	// if (main->ray->side == 0)
+	// 	main->c = 0x00FF0000;
+	// else
+	main->c = 0xFF0FF00;
 	main->ray->lineheight = (int)(main->scr_y / main->ray->perpwalldist);
 	main->ray->drawstart = (int)(-main->ray->lineheight / 2) + (main->scr_y / 2);
+	if (main->ray->drawstart < 0)
+		main->ray->drawstart = 0;
+	main->ray->drawend = (main->ray->lineheight / 2) + (main->scr_y/ 2);
+	if (main->ray->drawend >= main->scr_y)
+		main->ray->drawend = main->scr_y - 1;
 	// printf("mapx = %d\n", main->ray->mapx);
 	// printf("mapy = %d\n", main->ray->mapy);
 	// printf("posx = %f\n", main->ray->posx);
@@ -115,30 +120,78 @@ void	wall_dist(t_main *main)
 	// printf("raydiry = %f\n", main->ray->raydiry);
 	// printf("perpwalldist = %f\n", main->ray->perpwalldist);
 	// printf("lineheight = %d\n", main->ray->lineheight);
-	printf("drawstart = %d\n", main->ray->drawstart);
-	printf("drawsend = %d\n", main->ray->drawend);
-	if (main->ray->drawstart < 0)
-		main->ray->drawstart = 0;
-	main->ray->drawend = (main->ray->lineheight / 2) + (main->scr_y/ 2);
-	if (main->ray->drawend >= main->scr_y)
-		main->ray->drawend = main->scr_y - 1;
+	// printf("drawstart = %d\n", main->ray->drawstart);
+	// printf("drawsend = %d\n", main->ray->drawend);
 }
 
 void	display_texture(t_main *main, int x)
 {
 	int		y;
 
-	y = 0;
-	while (y < main->ray->drawstart)
+	y = main->ray->drawstart;
+	while (y < main->ray->drawend)
 	{
 		//printf("Y = %d\n", y);
 		my_mlx_pixel_put(main, x, y++, main->c);
 	}
-	y = 0;
-	while (main->ray->drawend <= y && y < main->scr_y)
+	// while (main->ray->drawend <= y && y < main->scr_y)
+	// {
+	// 	my_mlx_pixel_put(main, x, y++, main->c);
+	// }
+}
+
+int	event_key(int keysym, t_main *main)
+{
+	if (keysym)
 	{
-		my_mlx_pixel_put(main, x, y++, main->c);
+		if (keysym == XK_w)
+		{
+			main->ray->posx += (main->ray->dirx / 10);
+			main->ray->posy += (main->ray->diry / 10);
+		}
+		else if (keysym == XK_s)
+		{
+			main->ray->posx -= (main->ray->dirx / 10);
+			main->ray->posy -= (main->ray->diry / 10);
+		}
+		else if (keysym == XK_a)
+		{
+			main->ray->posx -= (main->ray->planx / 10);
+			main->ray->posy -= (main->ray->plany / 10);
+		}
+		else if (keysym == XK_d)
+		{
+			main->ray->posx -= (main->ray->plany / 10);
+			main->ray->posy -= (main->ray->plany / 10);
+		}
+		// else if (keysym == XK_Escape)
+		// 	close_game(game);
 	}
+	return (0);
+}
+
+void	draw_ceilling_floor(t_main *main)
+{
+	int		y;
+	int		x;
+
+	x = 0;
+	y = 0;
+	while (y < main->scr_y / 2)
+	{
+		x = 0;
+		while (x < main->scr_x)
+			my_mlx_pixel_put(main, x++, y, 0x0000FF);
+		y++;
+	}
+	while (y <= main->scr_y)
+	{
+		x = 0;
+		while (x < main->scr_x)
+			my_mlx_pixel_put(main, x++, y, 0x808080);
+		y++;
+	}
+	mlx_put_image_to_window(main->game->mlx_ptr, main->game->win_ptr, main->img->mlx_img, 0, 0);
 }
 
 int		draw_map(t_main *main)
@@ -147,6 +200,7 @@ int		draw_map(t_main *main)
 
 	x = 0;
 	main->ray->x = 0;
+	draw_ceilling_floor(main);
 	while (x < main->scr_x)
 	{
 		init_raycast(main, x);

@@ -26,13 +26,13 @@ int	main(int argc, char **argv, char **env)
 		return (-1);
 	/******/
 	create_window(main);
-	main->img->mlx_img = mlx_new_image(main->game->mlx_ptr, main->scr_x, SCREEN_H);
+	main->img->mlx_img = mlx_new_image(main->game->mlx_ptr, main->scr_x, main->scr_y);
 	main->img->addr = mlx_get_data_addr(main->img->mlx_img, &main->img->bpp, &main->img->line_len, &main->img->endian);
-	printf("ADDR = %s\n", main->img->addr);
 	/******/
 	draw_map(main);
 	// launch_game(game);
 	mlx_loop_hook(main->game->mlx_ptr, draw_map, main);
+	mlx_key_hook(main->game->win_ptr, event_key, main);
 	mlx_hook(main->game->win_ptr, DestroyNotify,
 		StructureNotifyMask, handle_cross, main->game);
 	// mlx_key_hook(game->win_ptr, event_key, game);

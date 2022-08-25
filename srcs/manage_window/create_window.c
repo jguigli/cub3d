@@ -34,7 +34,7 @@ void	create_window(t_main *main)
 		exit(EXIT_FAILURE);
 	}
 	main->game->win_ptr = mlx_new_window(main->game->mlx_ptr,
-			SCREEN_W, SCREEN_H, "CUB3D");
+			main->scr_x, main->scr_y, "CUB3D");
 	if (main->game->win_ptr == NULL)
 	{
 		//close_struct(game);

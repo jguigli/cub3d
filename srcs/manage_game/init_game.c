@@ -127,13 +127,21 @@ t_main	*initialisation_struct_main(void)
 	main = malloc(sizeof(t_main));
 	if (!main)
 		return (NULL);
-	main->scr_x = 800;
-	main->scr_y = 600;
+	main->scr_x = 1400; //(int)SCREEN_W;
+	main->scr_y = 1200; //(int)SCREEN_H;
 	main->c = 0;
 	main->f = 0;
 	main->c_map = initialisation_struct_map(); // mettre en int
+	if (!main->c_map)
+		return (NULL);
 	main->game = initialisation_struct_game(); // mettre en int
+	if (!main->game)
+		return (NULL);
 	main->ray = initialisation_struct_raycasting(); // mettre en int
+	if (!main->ray)
+		return (NULL);
 	main->img = initialisation_struct_xpm(); // mettre en int
+	if (!main->img)
+		return (NULL);
 	return (main);
 }

@@ -17,8 +17,8 @@
 
 # define BUFFER_SIZE 50
 
-# define SCREEN_H 600
-# define SCREEN_W 800
+# define SCREEN_H 1200
+# define SCREEN_W 1400
 # define IMG_W 32
 # define IMG_H 32
 
@@ -168,7 +168,6 @@ void	count_line(t_data *game, char *mapname);
 void	close_game(t_data *game);
 void	close_struct(t_data *game);
 int		check_move_possibility(t_data *game, char pos, int dir);
-int		event_key(int keysym, t_data *game);
 void	check_move_character(t_data *game, char pos, int dir);
 void	move_player(t_data *game, char pos, int dir);
 int		check_y_possibility(t_data *game, char pos, int dir);
@@ -193,5 +192,6 @@ int		check_texture(t_main *main);
 int		check_count_texture(t_main *main);
 int		manage_file_map(t_main *main, char *mapname);
 int		check_comma_number(char *rgb);
+int		event_key(int keysym, t_main *main);
 
 #endif
