@@ -96,7 +96,12 @@ typedef struct s_data
 	int		size_x;
 	int		pos_y;
 	int		pos_x;
-	int		count_move;
+	int		move_forward;
+	int		move_back;
+	int		move_left;
+	int		move_right;
+	int		move_rotate_left;
+	int		move_rotate_right;
 }	t_data;
 
 typedef struct	s_ray
@@ -192,6 +197,8 @@ int		check_texture(t_main *main);
 int		check_count_texture(t_main *main);
 int		manage_file_map(t_main *main, char *mapname);
 int		check_comma_number(char *rgb);
-int		event_key(int keysym, t_main *main);
+int		event_key(t_main *main);
+int		manage_key_press(int keysym, t_main *main);
+int		manage_key_release(int keysym, t_main *main);
 
 #endif

@@ -6,6 +6,7 @@ SRC_M = ./srcs/main.c \
 		./srcs/manage_window/create_window.c \
 		./srcs/manage_game/init_game.c \
 		./srcs/manage_game/raycast.c \
+		./srcs/manage_game/key_move.c \
 		./srcs/manage_map/check_fd.c \
 		#./srcs/manage_error/check_error.c \
 		./srcs/manage_game/close_game.c \

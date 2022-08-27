@@ -31,8 +31,10 @@ int	main(int argc, char **argv, char **env)
 	/******/
 	draw_map(main);
 	// launch_game(game);
+	mlx_hook(main->game->win_ptr, 2, 1L << 0, manage_key_press, main);
 	mlx_loop_hook(main->game->mlx_ptr, draw_map, main);
-	mlx_key_hook(main->game->win_ptr, event_key, main);
+	mlx_hook(main->game->win_ptr, 3, 1L << 1, manage_key_release, main);
+	//mlx_key_hook(main->game->win_ptr, event_key, main);
 	mlx_hook(main->game->win_ptr, DestroyNotify,
 		StructureNotifyMask, handle_cross, main->game);
 	// mlx_key_hook(game->win_ptr, event_key, game);

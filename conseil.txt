@@ -1,3 +1,4 @@
 dessiner ciel et plafond au debut a chaue fois
 deplacement avec press et release
 colision mur => lineheight >= scr_y
+ligne vide = ft nrv '' \0

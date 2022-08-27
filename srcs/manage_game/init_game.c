@@ -49,7 +49,6 @@ t_data	*initialisation_struct_game(void)
 	game->size_x = 0;
 	game->pos_y = 0;
 	game->pos_x = 0;
-	game->count_move = 0;
 // 	game->size_y = 0;
 // 	game->size_x = 0;
 // 	count_line(game, mapname);
@@ -127,8 +126,8 @@ t_main	*initialisation_struct_main(void)
 	main = malloc(sizeof(t_main));
 	if (!main)
 		return (NULL);
-	main->scr_x = 1400; //(int)SCREEN_W;
-	main->scr_y = 1200; //(int)SCREEN_H;
+	main->scr_x = 1000; //(int)SCREEN_W;
+	main->scr_y = 800; //(int)SCREEN_H;
 	main->c = 0;
 	main->f = 0;
 	main->c_map = initialisation_struct_map(); // mettre en int

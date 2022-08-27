@@ -29,7 +29,7 @@ void	my_mlx_pixel_put(t_main *main, int x, int y, int color)
 
 void	init_raycast(t_main *main, int x)
 {
-	main->ray->camerax = 2.0 * (double)(main->scr_x - 1 - x) / (double)main->scr_x - 1; //(x - main->scr_x) / (main->scr_x / 2); //x-coordinate in camera space
+	main->ray->camerax = 2.0 * x / (double)main->scr_x - 1; //(x - main->scr_x) / (main->scr_x / 2); //x-coordinate in camera space
 	//main->ray->dirx = cos(main->ray->planx) / 2 + cos(main->ray->planx - 0.25) * main->ray->camerax;
 	//main->ray->diry = sin(main->ray->plany) / 2 + sin(main->ray->plany - 0.25) * main->ray->camerax;
 	main->ray->mapx = (int)main->ray->posx;
@@ -50,7 +50,7 @@ void	side_dist(t_main *main)
 	else
 	{
 		main->ray->stepx = 1;
-		main->ray->sidedistx = (main->ray->mapx + 1 - main->ray->posx) * main->ray->deltadistx;
+		main->ray->sidedistx = (main->ray->mapx + 1.0 - main->ray->posx) * main->ray->deltadistx;
 	}
 	if (main->ray->diry < 0)
 	{
@@ -60,7 +60,7 @@ void	side_dist(t_main *main)
 	else
 	{
 		main->ray->stepy = 1;
-		main->ray->sidedisty = (main->ray->mapy + 1 - main->ray->posy) * main->ray->deltadisty;
+		main->ray->sidedisty = (main->ray->mapy + 1.0 - main->ray->posy) * main->ray->deltadisty;
 	}
 }
 
@@ -95,12 +95,12 @@ void	wall_dist(t_main *main)
 		main->ray->perpwalldist = main->ray->sidedistx - main->ray->deltadistx; //(main->ray->mapx - main->ray->posx + (1 - main->ray->stepx) / 2) / main->ray->raydirx;
 	else
 		main->ray->perpwalldist = main->ray->sidedisty - main->ray->deltadisty; //(main->ray->mapy - main->ray->posy + (1 - main->ray->stepy) / 2) / main->ray->raydiry;
-	// if (main->ray->side == 0)
-	// 	main->c = 0x00FF0000;
-	// else
-	main->c = 0xFF0FF00;
+	if (main->ray->side == 0)
+		main->c = 0x00FF0000;
+	else
+		main->c = 0xFF0FF00;
 	main->ray->lineheight = (int)(main->scr_y / main->ray->perpwalldist);
-	main->ray->drawstart = (int)(-main->ray->lineheight / 2) + (main->scr_y / 2);
+	main->ray->drawstart = (-main->ray->lineheight / 2) + (main->scr_y / 2);
 	if (main->ray->drawstart < 0)
 		main->ray->drawstart = 0;
 	main->ray->drawend = (main->ray->lineheight / 2) + (main->scr_y/ 2);
@@ -120,8 +120,8 @@ void	wall_dist(t_main *main)
 	// printf("raydiry = %f\n", main->ray->raydiry);
 	// printf("perpwalldist = %f\n", main->ray->perpwalldist);
 	// printf("lineheight = %d\n", main->ray->lineheight);
-	// printf("drawstart = %d\n", main->ray->drawstart);
-	// printf("drawsend = %d\n", main->ray->drawend);
+	//printf("drawstart = %d\n", main->ray->drawstart);
+	//printf("drawsend = %d\n", main->ray->drawend);
 }
 
 void	display_texture(t_main *main, int x)
@@ -140,33 +140,66 @@ void	display_texture(t_main *main, int x)
 	// }
 }
 
-int	event_key(int keysym, t_main *main)
+int	event_key(t_main *main)
 {
-	if (keysym)
+	double oldplanx;
+	double oldplanex;
+	double olddirx;
+
+	if (main->game->move_forward == 1)
 	{
-		if (keysym == XK_w)
-		{
-			main->ray->posx += (main->ray->dirx / 10);
-			main->ray->posy += (main->ray->diry / 10);
-		}
-		else if (keysym == XK_s)
-		{
-			main->ray->posx -= (main->ray->dirx / 10);
-			main->ray->posy -= (main->ray->diry / 10);
-		}
-		else if (keysym == XK_a)
-		{
-			main->ray->posx -= (main->ray->planx / 10);
-			main->ray->posy -= (main->ray->plany / 10);
-		}
-		else if (keysym == XK_d)
-		{
-			main->ray->posx -= (main->ray->plany / 10);
-			main->ray->posy -= (main->ray->plany / 10);
-		}
+		// if (main->game->map[(int)(main->ray->posx + 
+		// 			(main->ray->dirx * 0.1))][(int)main->ray->posy] == '0')
+			main->ray->posx += (main->ray->dirx * 0.1);
+		// if (main->game->map[(int)(main->ray->posx)][(int)(main->ray->posy +
+		// 			(main->ray->diry * 0.1))] == '0')
+			main->ray->posy += (main->ray->diry * 0.1);
+	}
+	else if (main->game->move_back == 1)
+	{
+		main->ray->posx -= (main->ray->dirx * 0.1);
+		main->ray->posy -= (main->ray->diry * 0.1);
+	}
+	else if (main->game->move_right == 1)
+	{
+		main->ray->posx += (main->ray->diry * 0.1);
+		main->ray->posy -= (main->ray->dirx * 0.1);
+	}
+	else if (main->game->move_left == 1)
+	{
+		main->ray->posx -= (main->ray->diry * 0.1);
+		main->ray->posy += (main->ray->dirx * 0.1);
+	}
+	else if (main->game->move_rotate_left == 1)
+	{
+		olddirx = main->ray->dirx;
+		oldplanex = main->ray->planx;
+
+		main->ray->dirx = main->ray->dirx * cos((0.033 * 1.8) / 2) -
+			main->ray->diry * sin((0.033 * 1.8) / 2);
+		main->ray->diry = olddirx * sin((0.033 * 1.8) / 2) +
+			main->ray->diry * cos((0.033 * 1.8) / 2);
+		main->ray->planx = main->ray->planx * cos((0.033 * 1.8) / 2) -
+			main->ray->plany * sin((0.033 * 1.8) / 2);
+		main->ray->plany = oldplanex * sin((0.033 * 1.8) / 2) +
+			main->ray->plany * cos((0.033 * 1.8) / 2);
+	}
+	else if (main->game->move_rotate_right == 1)
+	{
+		oldplanx = main->ray->planx;
+		olddirx = main->ray->dirx;
+
+		main->ray->dirx = main->ray->dirx * cos(-(0.033 * 1.8) / 2) -
+			main->ray->diry * sin(-(0.033 * 1.8) / 2);
+		main->ray->diry = olddirx * sin(-(0.033 * 1.8) / 2) +
+			main->ray->diry * cos(-(0.033 * 1.8) / 2);
+		main->ray->planx = main->ray->planx * cos(-(0.033 * 1.8) / 2)
+			- main->ray->plany * sin(-(0.033 * 1.8) / 2);
+		main->ray->plany = oldplanx * sin(-(0.033 * 1.8) / 2) +
+			main->ray->plany * cos(-(0.033 * 1.8) / 2);
+	}
 		// else if (keysym == XK_Escape)
 		// 	close_game(game);
-	}
 	return (0);
 }
 
@@ -214,6 +247,7 @@ int		draw_map(t_main *main)
 		// my_mlx_pixel_put(main->img, main->ray->drawstart, main->ray->drawend, main->c);
 		x++;
 	}
+	event_key(main);
 	//my_mlx_pixel_put(main->img, main->ray->drawstart, main->ray->drawend, color);
 	mlx_put_image_to_window(main->game->mlx_ptr, main->game->win_ptr, main->img->mlx_img, 0, 0);
 	return (0);

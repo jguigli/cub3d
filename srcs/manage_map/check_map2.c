@@ -180,7 +180,8 @@ int		check_color_floor(t_main *main)
 			i++;
 		temp = ft_substr(main->game->tex_f, y, i - y);
 		main->game->rgb_f[s] = ft_atoi(temp);
-		if (main->game->rgb_c[s] > 255 || main->game->rgb_c[s] < 0)
+		printf("%d et temp = %s\n", main->game->rgb_f[s], temp);
+		if (main->game->rgb_f[s] > 255 || main->game->rgb_f[s] < 0)
 		{
 			printf("Error\nOne or several numbers of floor rgb are not in the right scale\n");
 			return (1);
@@ -235,7 +236,7 @@ int		check_comma_number(char *rgb)
 	{
 		while (rgb[i] != ',' && rgb[i])
 		{
-			if (!ft_isdigit(rgb[i]))
+			if (!ft_isdigit(rgb[i]) && rgb[i] != ' ')
 			{
 				if ((rgb[i] == ' ' || rgb[i] == 9) && comma > 1
 					&& (ft_isdigit(rgb[i - 1]) || rgb[i - 1] == ' '
