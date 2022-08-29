@@ -49,22 +49,13 @@ t_data	*initialisation_struct_game(void)
 	game->size_x = 0;
 	game->pos_y = 0;
 	game->pos_x = 0;
-// 	game->size_y = 0;
-// 	game->size_x = 0;
-// 	count_line(game, mapname);
-// 	game->pos_y = 0;
-// 	game->pos_x = 0;
-// 	game->count_move = 0;
-// 	game->collectible_count = 0;
-// 	game->check_map.line_max = get_number_line(mapname);
-// 	game->check_map.fd = open(mapname, O_RDONLY);
-// 	game->check_map.line = get_next_line(game->check_map.fd);
-// 	game->check_map.length = ft_strlen(game->check_map.line);
-// 	game->check_map.length2 = 0;
-// 	game->check_map.count_line = 1;
-// 	game->check_map.position = 0;
-// 	game->check_map.exit = 0;
-// 	game->check_map.collectible = 0;
+	game->move_forward = 0;
+	game->move_back = 0;
+	game->move_right = 0;
+	game->move_left = 0;
+	game->move_rotate_left = 0;
+	game->move_rotate_right = 0;
+	game->tempmouse = 0; // BONUS
 	return (game);
 }
 
@@ -98,7 +89,8 @@ t_ray	*initialisation_struct_raycasting(void)
 	ray->lineheight = 0;
 	ray->drawstart = 0;
 	ray->drawend = 0;
-	ray->x = 0;
+	ray->olddirx = 0;
+	ray->oldplanx = 0;
 	return (ray);
 }
 

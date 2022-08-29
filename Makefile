@@ -7,6 +7,10 @@ SRC_M = ./srcs/main.c \
 		./srcs/manage_game/init_game.c \
 		./srcs/manage_game/raycast.c \
 		./srcs/manage_game/key_move.c \
+		./srcs/manage_game/move_player.c \
+		./srcs/manage_game/rotate_player.c \
+		./srcs/manage_game/draw_game.c \
+		./srcs/manage_game/close_game.c \
 		./srcs/manage_map/check_fd.c \
 		#./srcs/manage_error/check_error.c \
 		./srcs/manage_game/close_game.c \

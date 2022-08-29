@@ -102,6 +102,7 @@ typedef struct s_data
 	int		move_right;
 	int		move_rotate_left;
 	int		move_rotate_right;
+	int		tempmouse;
 }	t_data;
 
 typedef struct	s_ray
@@ -129,7 +130,9 @@ typedef struct	s_ray
 	int			lineheight; //hauteur de la ligne a dessiner
 	int			drawstart; //position de debut ou il faut dessiner
 	int			drawend; //position de fin ou il faut dessiner
-	int			x; //permet de parcourir tous les rayons
+	int			olddirx;
+	int			oldplanx;
+	int			oldplanxbis;
 }	t_ray;
 
 typedef struct s_main
@@ -170,7 +173,6 @@ int		handle_keypress(int keysym, t_data *data);
 int		handle_cross(t_data *data);
 int		handle_no_event(void);
 void	count_line(t_data *game, char *mapname);
-void	close_game(t_data *game);
 void	close_struct(t_data *game);
 int		check_move_possibility(t_data *game, char pos, int dir);
 void	check_move_character(t_data *game, char pos, int dir);
@@ -200,5 +202,19 @@ int		check_comma_number(char *rgb);
 int		event_key(t_main *main);
 int		manage_key_press(int keysym, t_main *main);
 int		manage_key_release(int keysym, t_main *main);
+void	close_game(t_main *main);
+void    rotate_right(t_main *main);
+void    rotate_left(t_main *main);
+void    move_forward(t_main *main);
+void    move_back(t_main *main);
+void    move_right(t_main *main);
+void    move_left(t_main *main);
+void	init_raycast(t_main *main, int x);
+void	side_dist(t_main *main);
+void	algo_dda(t_main *main);
+void	wall_dist(t_main *main);
+void	display_texture(t_main *main, int x);
+void    rotate_left_mouse(t_main *main, double rotaspeed); // BONUS
+void    rotate_right_mouse(t_main *main, double rotaspeed); // BONUS
 
 #endif

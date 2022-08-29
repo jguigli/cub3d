@@ -28,7 +28,7 @@
 
 void	stock_position_north(int x, int y, t_main *main)
 {
-	main->game->map[y][x] = '0';
+	main->game->map[x][y] = '0';
 	main->ray->posx = x;
 	main->ray->posy = y;
 	main->ray->dirx = -1;
@@ -40,7 +40,7 @@ void	stock_position_north(int x, int y, t_main *main)
 
 void	stock_position_south(int x, int y, t_main *main)
 {
-	main->game->map[y][x] = '0';
+	main->game->map[x][y] = '0';
 	main->ray->posx = x;
 	main->ray->posy = y;
 	main->ray->dirx = 1;
@@ -52,7 +52,7 @@ void	stock_position_south(int x, int y, t_main *main)
 
 void	stock_position_east(int x, int y, t_main *main)
 {
-	main->game->map[y][x] = '0';
+	main->game->map[x][y] = '0';
 	main->ray->posx = x;
 	main->ray->posy = y;
 	main->ray->dirx = 0;
@@ -64,7 +64,7 @@ void	stock_position_east(int x, int y, t_main *main)
 
 void	stock_position_west(int x, int y, t_main *main)
 {
-	main->game->map[y][x] = '0';
+	main->game->map[x][y] = '0';
 	main->ray->posx = x;
 	main->ray->posy = y;
 	main->ray->dirx = 0;
@@ -103,23 +103,23 @@ int		check_position(t_main *main)
 	int	x;
 	int	y;
 
-	y = 0;
-	while (main->game->map[y])
+	x = 0;
+	while (main->game->map[x])
 	{
-		x = 0;
-		while (main->game->map[y][x])
+		y = 0;
+		while (main->game->map[x][y])
 		{
-			if (main->game->map[y][x] == 'N')
+			if (main->game->map[x][y] == 'N')
 				stock_position_north(x, y, main);
-			else if (main->game->map[y][x] == 'S')
+			else if (main->game->map[x][y] == 'S')
 				stock_position_south(x, y, main);
-			else if (main->game->map[y][x] == 'E')
+			else if (main->game->map[x][y] == 'E')
 				stock_position_east(x, y, main);
-			else if (main->game->map[y][x] == 'W')
+			else if (main->game->map[x][y] == 'W')
 				stock_position_west(x, y, main);
-			x++;
+			y++;
 		}
-		y++;
+		x++;
 	}
 	if (main->game->pos_ok == 0)
 	{
@@ -180,7 +180,6 @@ int		check_color_floor(t_main *main)
 			i++;
 		temp = ft_substr(main->game->tex_f, y, i - y);
 		main->game->rgb_f[s] = ft_atoi(temp);
-		printf("%d et temp = %s\n", main->game->rgb_f[s], temp);
 		if (main->game->rgb_f[s] > 255 || main->game->rgb_f[s] < 0)
 		{
 			printf("Error\nOne or several numbers of floor rgb are not in the right scale\n");

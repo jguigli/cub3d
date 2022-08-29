@@ -2,3 +2,21 @@ dessiner ciel et plafond au debut a chaue fois
 deplacement avec press et release
 colision mur => lineheight >= scr_y
 ligne vide = ft nrv '' \0
+segfault en lançant direct, direction sur les cotés
+
+// printf("mapx = %d\n", main->ray->mapx);
+// printf("mapy = %d\n", main->ray->mapy);
+// printf("posx = %f\n", main->ray->posx);
+// printf("posy = %f\n", main->ray->posy);
+// printf("stepx = %d\n", main->ray->stepx);
+// printf("stepy = %d\n", main->ray->stepy);
+// printf("sidedistx = %f\n", main->ray->sidedistx);
+// printf("sidedisty = %f\n", main->ray->sidedisty);
+// printf("deltadistx = %f\n", main->ray->deltadistx);
+// printf("deltadisty = %f\n", main->ray->deltadisty);
+// printf("raydirx = %f\n", main->ray->raydirx);
+// printf("raydiry = %f\n", main->ray->raydiry);
+// printf("perpwalldist = %f\n", main->ray->perpwalldist);
+// printf("lineheight = %d\n", main->ray->lineheight);
+//printf("drawstart = %d\n", main->ray->drawstart);
+//printf("drawsend = %d\n", main->ray->drawend);
