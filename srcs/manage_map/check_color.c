@@ -2,7 +2,16 @@
 
 int		check_color(t_main *main)
 {
-	//check_path(main)
+	if (get_texture(main)) // MSG ERREUR
+	{
+		printf("Error\nFail xpm to image\n");
+		return (1);
+	}
+	if (get_addr_texture(main)) // MSG ERREUR
+	{
+		printf("Error\nFail addr texture\n");
+		return (1);
+	}
 	if (check_comma_number(main->game->tex_f))
 		return (1);
 	if (check_comma_number(main->game->tex_c))
@@ -11,6 +20,7 @@ int		check_color(t_main *main)
 		return (1);
 	if (check_color_ceilling(main))
 		return (1);
+	manage_rgb(main);
 	return (0);
 }
 

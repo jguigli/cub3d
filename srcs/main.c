@@ -16,16 +16,16 @@ int	main(int argc, char **argv, char **env)
 		printf("Error\nIncorrect number of arguments\n");
 		return (-1);
 	}
-	if (!env)
+	if (!env || !*env)
 	{
 		printf("Error\nEmpty environnement\n");
 		return (-1);
 	}
 	main = initialisation_struct_main();
+	create_window(main);
 	if (manage_file_map(main, argv[1]) == -1)
 		return (-1);
 	/******/
-	create_window(main);
 	main->img->mlx_img = mlx_new_image(main->game->mlx_ptr, main->scr_x, main->scr_y);
 	main->img->addr = mlx_get_data_addr(main->img->mlx_img, &main->img->bpp, &main->img->line_len, &main->img->endian);
 	/******/

@@ -28,22 +28,23 @@
 # define RIGHT 1
 
 /*AZERYTY*/
+/*
 # define ROTATE_LEFT 65361
 # define ROTATE_RIGHT 65363
 # define FORWARD_W_Z 122
 # define BACK_S_S 115
 # define RIGHT_D_D 100
 # define LEFT_A_Q 113
-
+*/
 /*QWERTY*/
-/*
+
 # define ROTATE_LEFT 65361
 # define ROTATE_RIGHT 65363
 # define FORWARD_W_Z 119
 # define BACK_S_S 115
 # define RIGHT_D_D 100
 # define LEFT_A_Q 97
-*/
+
 
 typedef struct s_xpm
 {
@@ -72,17 +73,13 @@ typedef struct s_map
 
 typedef struct s_tex
 {
-	char	*line;
-	char	*linejoin;
-	int		length;
-	int		length2;
-	int		fd;
-	int		count_line;
-	int		line_max;
-	int		position;
-	int		exit;
-	int		collectible;
-}	t_sex;
+	double	wallx;
+	double	step;
+	double	texpos;
+	int		texX;
+	int		texY;
+	int		texdir;
+}	t_tex;
 
 typedef struct s_data
 {
@@ -157,9 +154,10 @@ typedef struct s_main
 	int		f;
 	t_data	*game;
 	t_xpm	*img;
-	t_xpm	**texture[4];
+	t_xpm	*texture;
 	t_ray	*ray;
 	t_map	*c_map;
+	t_tex	*tex;
 }	t_main;
 
 int		get_number_line(char *mapname);
@@ -204,6 +202,8 @@ t_map	*initialisation_struct_map(void);
 t_ray	*initialisation_struct_raycasting(void);
 t_data	*initialisation_struct_game(void);
 t_xpm	*initialisation_struct_xpm(void);
+t_xpm	*initialisation_struct_texture(void);
+t_tex	*initialisation_struct_tex(void);
 t_main	*initialisation_struct_main(void);
 void	create_window(t_main *main);
 int		check_file_name(char *mapname);
@@ -242,7 +242,13 @@ int		check_color_ceilling(t_main *main);
 int		check_char(t_main *main);
 int		check_format(t_main *main);
 int		manage_file_map(t_main *main, char *mapname);
-void    rotate_left_mouse(t_main *main, double rotaspeed); // BONUS
-void    rotate_right_mouse(t_main *main, double rotaspeed); // BONUS
+int		get_texture(t_main *main);
+int		get_addr_texture(t_main *main);
+void	get_dir_texture(t_main *main);
+void	texture_calculation(t_main *main, int x);
+void	display_color_texture(t_main *main, int x);
+void	my_mlx_pixel_put(t_main *main, int x, int y, int color);
+void	rotate_left_mouse(t_main *main, double rotaspeed); // BONUS
+void	rotate_right_mouse(t_main *main, double rotaspeed); // BONUS
 
 #endif

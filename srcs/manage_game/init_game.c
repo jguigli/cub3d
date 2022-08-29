@@ -101,7 +101,7 @@ t_xpm	*initialisation_struct_xpm(void)
 	img = malloc(sizeof(t_xpm));
 	if (!img)
 		return (NULL);
-	img->mlx_img= NULL;
+	img->mlx_img = NULL;
 	img->addr = NULL;
 	img->bpp = 0;
 	img->line_len = 0;
@@ -111,6 +111,32 @@ t_xpm	*initialisation_struct_xpm(void)
 	return (img);
 }
 
+t_xpm	*initialisation_struct_texture(void)
+{
+	t_xpm	*img;
+
+	img = malloc(sizeof(t_xpm*) * 4);
+	if (!img)
+		return (NULL);
+	return (img);
+}
+
+t_tex	*initialisation_struct_tex(void)
+{
+	t_tex	*tex;
+
+	tex = malloc(sizeof(t_tex));
+	if (!tex)
+		return (NULL);
+	tex->wallx = 0;
+	tex->step = 0;
+	tex->texpos = 0;
+	tex->texX = 0;
+	tex->texY = 0;
+	tex->texdir = 0;
+	return (tex);
+}
+
 t_main	*initialisation_struct_main(void)
 {
 	t_main	*main;
@@ -118,21 +144,30 @@ t_main	*initialisation_struct_main(void)
 	main = malloc(sizeof(t_main));
 	if (!main)
 		return (NULL);
-	main->scr_x = 1000; //(int)SCREEN_W;
-	main->scr_y = 800; //(int)SCREEN_H;
+	main->scr_x = 1600; //(int)SCREEN_W;
+	main->scr_y = 1200; //(int)SCREEN_H;
 	main->c = 0;
 	main->f = 0;
-	main->c_map = initialisation_struct_map(); // mettre en int
+	main->c_map = initialisation_struct_map();
 	if (!main->c_map)
 		return (NULL);
-	main->game = initialisation_struct_game(); // mettre en int
+	main->game = initialisation_struct_game();
 	if (!main->game)
 		return (NULL);
-	main->ray = initialisation_struct_raycasting(); // mettre en int
+	main->ray = initialisation_struct_raycasting();
 	if (!main->ray)
 		return (NULL);
-	main->img = initialisation_struct_xpm(); // mettre en int
+	main->img = initialisation_struct_xpm();
 	if (!main->img)
+		return (NULL);
+	main->texture = (t_xpm*)malloc(sizeof(t_xpm) * 4);
+	if (!main->texture)
+		return (NULL);
+	int	i = 0;
+	while (i < 4)
+		main->texture[i++] = (t_xpm){};
+	main->tex = initialisation_struct_tex();
+	if (!main->tex)
 		return (NULL);
 	return (main);
 }

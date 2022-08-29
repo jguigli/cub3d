@@ -1,10 +1,10 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO ./texture/floor.xpm
+SO ./texture/floor.xpm
+WE ./texture/planks.xpm
+EA ./texture/planks.xpm
 
-F 0,0,0
-C 0,20,50
+F 135,253,0
+C 34,170,200
 
 
 
