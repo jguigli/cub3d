@@ -29,29 +29,17 @@ int	check_first_last_row(char *map)
 int		check_zero(char **map, int x, int y)
 {
 	if (map[x - 1][y] != '1' && map[x - 1][y] != '0')
-	{
-		//printf("\t\terror : HAUT --> valeur = %c\n", map[x - 1][y]);
 		return (1);
-	}
 	if (map[x + 1][y] != '1' && map[x + 1][y] != '0')
-	{
-		//printf("\t\terror : BAS --> valeur = %i\n", map[x + 1][y]);
 		return (1);
-	}
 	if (map[x][y - 1] != '1' && map[x][y - 1] != '0')
-	{
-		//printf("\t\terror : GAUCHE --> valeur = %c\n", map[x][y - 1]);
 		return (1);
-	}
 	if (map[x][y + 1] != '1' && map[x][y + 1] != '0')
-	{
-		//printf("\t\terror : DROITE --> valeur = %c\n", map[x][y + 1]);
 		return (1);
-	}
 	return (0);
 }
 
-int		check_outline(char **map) // checker position du joueur avant
+int		check_outline(char **map)
 {
 	size_t	x;
 	size_t	y;
@@ -64,14 +52,11 @@ int		check_outline(char **map) // checker position du joueur avant
 		printf("first row = %s\nlast row = %s\n", map[0], map[ft_strlen_double(map) - 1]);
 		error++;
 	}
-	//printf("%s\n", map[0]);
 	while (x < ft_strlen_double(map) - 1)
 	{
-		//printf("%s\n", map[x]);
 		y = 0;
 		while (map[x][y])
-		{	
-			//printf("%c", map[x][y]);
+		{
 			if (map[x][y] == '0')
 			{
 				if (check_zero(map, x, y))
@@ -84,7 +69,6 @@ int		check_outline(char **map) // checker position du joueur avant
 		}
 		x++;
 	}
-	//printf("%s\n", map[x]);
 	printf("The map is correct\n");
 	return (0);
 }

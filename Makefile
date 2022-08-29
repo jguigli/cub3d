@@ -1,6 +1,10 @@
 SRC_M = ./srcs/main.c \
 		./srcs/manage_map/check_map.c \
-		./srcs/manage_map/check_map2.c \
+		./srcs/manage_map/manage_map.c \
+		./srcs/manage_map/check_color.c \
+		./srcs/manage_map/check_position.c \
+		./srcs/manage_map/check_texture.c \
+		./srcs/manage_map/read_file.c \
 		./srcs/manage_map/parse_map.c \
 		./gnl/get_next_line.c \
 		./srcs/manage_window/create_window.c \
@@ -11,6 +15,7 @@ SRC_M = ./srcs/main.c \
 		./srcs/manage_game/rotate_player.c \
 		./srcs/manage_game/draw_game.c \
 		./srcs/manage_game/close_game.c \
+		./srcs/manage_game/texture.c \
 		./srcs/manage_map/check_fd.c \
 		#./srcs/manage_error/check_error.c \
 		./srcs/manage_game/close_game.c \

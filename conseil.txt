@@ -2,7 +2,16 @@ dessiner ciel et plafond au debut a chaue fois
 deplacement avec press et release
 colision mur => lineheight >= scr_y
 ligne vide = ft nrv '' \0
-segfault en lançant direct, direction sur les cotés
+***segfault en lançant direct, direction sur les cotés
+
+- Gun image à display en bas de l'ecran a droite
+- le hit (voir lodev) mm raycast avec rayon sur le sprite, press space bar affichage feu, et kill si le rayon est sur le sprite
+- porte (voir lodev)
+
+
+
+
+
 
 // printf("mapx = %d\n", main->ray->mapx);
 // printf("mapy = %d\n", main->ray->mapy);

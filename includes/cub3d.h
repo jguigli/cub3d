@@ -70,6 +70,20 @@ typedef struct s_map
 	int		collectible;
 }	t_map;
 
+typedef struct s_tex
+{
+	char	*line;
+	char	*linejoin;
+	int		length;
+	int		length2;
+	int		fd;
+	int		count_line;
+	int		line_max;
+	int		position;
+	int		exit;
+	int		collectible;
+}	t_sex;
+
 typedef struct s_data
 {
 	void	*mlx_ptr;
@@ -143,6 +157,7 @@ typedef struct s_main
 	int		f;
 	t_data	*game;
 	t_xpm	*img;
+	t_xpm	**texture[4];
 	t_ray	*ray;
 	t_map	*c_map;
 }	t_main;
@@ -214,6 +229,19 @@ void	side_dist(t_main *main);
 void	algo_dda(t_main *main);
 void	wall_dist(t_main *main);
 void	display_texture(t_main *main, int x);
+void	stock_position_north(int x, int y, t_main *main);
+void	stock_position_south(int x, int y, t_main *main);
+void	stock_position_east(int x, int y, t_main *main);
+void	stock_position_west(int x, int y, t_main *main);
+int		check_position(t_main *main);
+int		check_color(t_main *main);
+int		create_trgb(int r, int g, int b);
+int		manage_rgb(t_main *main);
+int		check_color_floor(t_main *main);
+int		check_color_ceilling(t_main *main);
+int		check_char(t_main *main);
+int		check_format(t_main *main);
+int		manage_file_map(t_main *main, char *mapname);
 void    rotate_left_mouse(t_main *main, double rotaspeed); // BONUS
 void    rotate_right_mouse(t_main *main, double rotaspeed); // BONUS
 
