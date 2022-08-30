@@ -1,7 +1,7 @@
-NO ./texture/floor.xpm
-SO ./texture/floor.xpm
-WE ./texture/planks.xpm
-EA ./texture/planks.xpm
+NO ./texture/eagle.xpm
+SO ./texture/planks.xpm
+WE ./texture/greystone.xpm
+EA ./texture/purplestone.xpm
 
 F 135,253,0
 C 34,170,200

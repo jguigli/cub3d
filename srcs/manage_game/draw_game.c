@@ -2,7 +2,7 @@
 
 void	my_mlx_pixel_put(t_main *main, int x, int y, int color)
 {
-	char	*dst;
+	int	*dst;
 
 	dst = main->img->addr + (y * main->img->line_len + x * (main->img->bpp / 8));
 	*(unsigned int*)dst = color;
@@ -14,11 +14,12 @@ void	display_texture(t_main *main, int x)
 
 	y = 0;
 	while (y < main->ray->drawstart)
-		my_mlx_pixel_put(main, x, y++, main->game->color_c);
-	texture_calculation(main, x);
+		main->img->addr[y++ * main->img->line_len / 4 + x] = main->game->color_c;//my_mlx_pixel_put(main, x, y++, main->game->color_c);
+	if (y <= main->ray->drawend)
+		texture_calculation(main, x);
 	y = main->ray->drawend;
 	while (y <= main->scr_y)
-		my_mlx_pixel_put(main, x, y++, main->game->color_f);
+		main->img->addr[y++ * main->img->line_len / 4 + x] = main->game->color_f;
 }
 
 int		draw_map(t_main *main)

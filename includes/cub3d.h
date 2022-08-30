@@ -49,7 +49,7 @@
 typedef struct s_xpm
 {
 	void	*mlx_img;
-	char	*addr;
+	int		*addr;
 	int		bpp;
 	int		line_len;
 	int		endian;
@@ -79,6 +79,7 @@ typedef struct s_tex
 	int		texX;
 	int		texY;
 	int		texdir;
+	int		color;
 }	t_tex;
 
 typedef struct s_data

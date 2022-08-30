@@ -163,9 +163,9 @@ t_main	*initialisation_struct_main(void)
 	main->texture = (t_xpm*)malloc(sizeof(t_xpm) * 4);
 	if (!main->texture)
 		return (NULL);
-	int	i = 0;
-	while (i < 4)
-		main->texture[i++] = (t_xpm){};
+	// int	i = 0;
+	// while (i < 4)
+	// 	main->texture[i++] = (t_xpm){};
 	main->tex = initialisation_struct_tex();
 	if (!main->tex)
 		return (NULL);

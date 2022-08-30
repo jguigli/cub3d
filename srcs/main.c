@@ -27,7 +27,7 @@ int	main(int argc, char **argv, char **env)
 		return (-1);
 	/******/
 	main->img->mlx_img = mlx_new_image(main->game->mlx_ptr, main->scr_x, main->scr_y);
-	main->img->addr = mlx_get_data_addr(main->img->mlx_img, &main->img->bpp, &main->img->line_len, &main->img->endian);
+	main->img->addr = (int*)mlx_get_data_addr(main->img->mlx_img, &main->img->bpp, &main->img->line_len, &main->img->endian);
 	/******/
 	draw_map(main);
 	// launch_game(game);
