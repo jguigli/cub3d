@@ -1,22 +1,24 @@
 SRC_M = ./srcs/main.c \
-		./srcs/manage_map/check_map.c \
+		./srcs/manage_map/check_closemap.c \
 		./srcs/manage_map/manage_map.c \
 		./srcs/manage_map/check_color.c \
 		./srcs/manage_map/check_position.c \
 		./srcs/manage_map/check_texture.c \
 		./srcs/manage_map/read_file.c \
 		./srcs/manage_map/parse_map.c \
-		./gnl/get_next_line.c \
-		./srcs/manage_window/create_window.c \
+		./srcs/manage_mlx/create_window.c \
+		./srcs/manage_mlx/init_ptr.c \
 		./srcs/manage_game/init_game.c \
 		./srcs/manage_game/raycast.c \
 		./srcs/manage_game/key_move.c \
 		./srcs/manage_game/move_player.c \
 		./srcs/manage_game/rotate_player.c \
 		./srcs/manage_game/draw_game.c \
-		./srcs/manage_game/close_game.c \
 		./srcs/manage_game/texture.c \
 		./srcs/manage_map/check_fd.c \
+		./srcs/manage_exit/error.c \
+		./srcs/manage_exit/free.c \
+		./gnl/get_next_line.c \
 		#./srcs/manage_error/check_error.c \
 		./srcs/manage_game/close_game.c \
 		./srcs/manage_game/launch_game.c \

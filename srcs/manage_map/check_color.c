@@ -1,29 +1,5 @@
 #include "../../includes/cub3d.h"
 
-int		check_color(t_main *main)
-{
-	if (get_texture(main)) // MSG ERREUR
-	{
-		printf("Error\nFail xpm to image\n");
-		return (1);
-	}
-	if (get_addr_texture(main)) // MSG ERREUR
-	{
-		printf("Error\nFail addr texture\n");
-		return (1);
-	}
-	if (check_comma_number(main->game->tex_f))
-		return (1);
-	if (check_comma_number(main->game->tex_c))
-		return (1);
-	if (check_color_floor(main))
-		return (1);
-	if (check_color_ceilling(main))
-		return (1);
-	manage_rgb(main);
-	return (0);
-}
-
 int	create_trgb(int r, int g, int b)
 {
 	int		t;
@@ -55,11 +31,9 @@ int		check_color_floor(t_main *main)
 			i++;
 		temp = ft_substr(main->game->tex_f, y, i - y);
 		main->game->rgb_f[s] = ft_atoi(temp);
+		free (temp);
 		if (main->game->rgb_f[s] > 255 || main->game->rgb_f[s] < 0)
-		{
-			printf("Error\nOne or several numbers of floor rgb are not in the right scale\n");
-			return (1);
-		}
+			return (error_exit(main, FRGBSCALE));
 		s++;
 		if (main->game->tex_f[i] == ',')
 			i++;
@@ -85,16 +59,32 @@ int		check_color_ceilling(t_main *main)
 			i++;
 		temp = ft_substr(main->game->tex_c, y, i - y);
 		main->game->rgb_c[s] = ft_atoi(temp);
+		free (temp);
 		if (main->game->rgb_c[s] > 255 || main->game->rgb_c[s] < 0)
-		{
-			printf("Error\nOne or several numbers of ceilling rgb are not in the right scale\n");
-			return (1);
-		}
+			return (error_exit(main, CRGBSCALE));
 		s++;
 		if (main->game->tex_c[i] == ',')
 			i++;
 		else
 			break ;
 	}
+	return (0);
+}
+
+int		check_color(t_main *main)
+{
+	if (get_texture(main))
+		return (1);
+	if (get_addr_texture(main))
+		return (1);
+	if (check_comma_number(main, main->game->tex_f))
+		return (1);
+	if (check_comma_number(main, main->game->tex_c))
+		return (1);
+	if (check_color_floor(main))
+		return (1);
+	if (check_color_ceilling(main))
+		return (1);
+	manage_rgb(main);
 	return (0);
 }

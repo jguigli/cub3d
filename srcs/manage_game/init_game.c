@@ -89,8 +89,6 @@ t_ray	*initialisation_struct_raycasting(void)
 	ray->lineheight = 0;
 	ray->drawstart = 0;
 	ray->drawend = 0;
-	ray->olddirx = 0;
-	ray->oldplanx = 0;
 	return (ray);
 }
 
@@ -140,7 +138,9 @@ t_tex	*initialisation_struct_tex(void)
 t_main	*initialisation_struct_main(void)
 {
 	t_main	*main;
+	int	i;
 	
+	i = 0;
 	main = malloc(sizeof(t_main));
 	if (!main)
 		return (NULL);
@@ -163,9 +163,8 @@ t_main	*initialisation_struct_main(void)
 	main->texture = (t_xpm*)malloc(sizeof(t_xpm) * 4);
 	if (!main->texture)
 		return (NULL);
-	// int	i = 0;
-	// while (i < 4)
-	// 	main->texture[i++] = (t_xpm){};
+	while (i < 4)
+		main->texture[i++] = (t_xpm){};
 	main->tex = initialisation_struct_tex();
 	if (!main->tex)
 		return (NULL);

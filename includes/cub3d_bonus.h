@@ -161,7 +161,6 @@ typedef struct	s_ray
 	int			mapy;
 	double		sidedistx;
 	double		sidedisty;
-	double		deltadistx;
 	double		deltadisty;
 	int			stepx;
 	int			stepy;
@@ -250,5 +249,7 @@ void	init_mlx_ptr(t_main *main);
 int		error_exit(t_main *main, char *errormsg);
 int		error_exit_noinit(char *errormsg);
 void    exit_escape(t_main *main);
+void	rotate_left_mouse(t_main *main, double rotaspeed); // BONUS
+void	rotate_right_mouse(t_main *main, double rotaspeed); // BONUS
 
 #endif

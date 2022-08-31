@@ -14,7 +14,7 @@ void	display_texture(t_main *main, int x)
 
 	y = 0;
 	while (y < main->ray->drawstart)
-		main->img->addr[y++ * main->img->line_len / 4 + x] = main->game->color_c;//my_mlx_pixel_put(main, x, y++, main->game->color_c);
+		main->img->addr[y++ * main->img->line_len / 4 + x] = main->game->color_c;
 	if (y <= main->ray->drawend)
 		texture_calculation(main, x);
 	y = main->ray->drawend;

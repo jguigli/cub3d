@@ -1,44 +1,24 @@
 #include "../includes/cub3d.h"
 
-int	handle_cross(t_data *game)
-{
-	mlx_loop_end(game->mlx_ptr);
-	//close_game(game);
-	return (0);
-}
-
 int	main(int argc, char **argv, char **env)
 {
 	t_main	*main;
 
+	main = NULL;
 	if (argc != 2)
-	{
-		printf("Error\nIncorrect number of arguments\n");
-		return (-1);
-	}
+		return (error_exit_noinit(ARG));
 	if (!env || !*env)
-	{
-		printf("Error\nEmpty environnement\n");
-		return (-1);
-	}
+		return (error_exit_noinit(ENV));
 	main = initialisation_struct_main();
-	create_window(main);
+	init_mlx_ptr(main);
 	if (manage_file_map(main, argv[1]) == -1)
 		return (-1);
-	/******/
-	main->img->mlx_img = mlx_new_image(main->game->mlx_ptr, main->scr_x, main->scr_y);
-	main->img->addr = (int*)mlx_get_data_addr(main->img->mlx_img, &main->img->bpp, &main->img->line_len, &main->img->endian);
-	/******/
+	create_window(main);
 	draw_map(main);
-	// launch_game(game);
-	mlx_hook(main->game->win_ptr, 2, 1L << 0, manage_key_press, main);
-	mlx_loop_hook(main->game->mlx_ptr, draw_map, main);
-	mlx_hook(main->game->win_ptr, 3, 1L << 1, manage_key_release, main);
-	//mlx_key_hook(main->game->win_ptr, event_key, main);
-	mlx_hook(main->game->win_ptr, DestroyNotify,
-		StructureNotifyMask, handle_cross, main->game);
-	// mlx_key_hook(game->win_ptr, event_key, game);
-	mlx_loop(main->game->mlx_ptr);
-	//free(game);
+	manage_mlx(main);
+	mlx_destroy_image(main->game->mlx_ptr, main->img->mlx_img);
+	mlx_destroy_window(main->game->mlx_ptr, main->game->win_ptr);
+	mlx_destroy_display(main->game->mlx_ptr);
+	free_main(main);
 	return (0);
 }

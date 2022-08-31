@@ -29,46 +29,49 @@ int	check_first_last_row(char *map)
 int		check_zero(char **map, int x, int y)
 {
 	if (map[x - 1][y] != '1' && map[x - 1][y] != '0')
+	{
+		printf("la et x = %d et y = %d\n", x, y);
 		return (1);
+	}
 	if (map[x + 1][y] != '1' && map[x + 1][y] != '0')
+	{
+		printf("la et x = %d et y = %d\n", x, y);
 		return (1);
+	}
 	if (map[x][y - 1] != '1' && map[x][y - 1] != '0')
+	{
+		printf("la et x = %d et y = %d\n", x, y);
 		return (1);
+	}
 	if (map[x][y + 1] != '1' && map[x][y + 1] != '0')
+	{
+		printf("la et x = %d et y = %d\n", x, y);
 		return (1);
+	}
 	return (0);
 }
 
-int		check_outline(char **map)
+int		check_outline(t_main *main)
 {
 	size_t	x;
 	size_t	y;
-	int		error;
 
 	x = 1;
-	error = 0;
-	if (check_first_last_row(map[0]) || check_first_last_row(map[ft_strlen_double(map) - 1]))
-	{
-		printf("first row = %s\nlast row = %s\n", map[0], map[ft_strlen_double(map) - 1]);
-		error++;
-	}
-	while (x < ft_strlen_double(map) - 1)
+	if (check_first_last_row(main->game->map[0]) || check_first_last_row(main->game->map[ft_strlen_double(main->game->map) - 1]))
+		error_exit(main, NMAPCLOSED);
+	while (x < ft_strlen_double(main->game->map) - 1)
 	{
 		y = 0;
-		while (map[x][y])
+		while (main->game->map[x][y])
 		{
-			if (map[x][y] == '0')
+			if (main->game->map[x][y] == '0')
 			{
-				if (check_zero(map, x, y))
-				{
-					printf("Error\nThe map is not closed\n");
-					return (1);
-				}
+				if (check_zero(main->game->map, x, y))
+					error_exit(main, NMAPCLOSED);
 			}
 			y++;
 		}
 		x++;
 	}
-	printf("The map is correct\n");
 	return (0);
 }

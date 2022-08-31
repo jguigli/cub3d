@@ -72,14 +72,8 @@ int		check_position(t_main *main)
 		x++;
 	}
 	if (main->game->pos_ok == 0)
-	{
-		printf("Error\nNo position specified\n");
-		return (1);
-	}
+		return (error_exit(main, NOPOS));
 	else if (main->game->pos_ok > 1)
-	{
-		printf("Error\nToo much positions specified\n");
-		return (1);
-	}
+		return (error_exit(main, TMPOS));
 	return (0);
 }

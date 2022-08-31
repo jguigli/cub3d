@@ -11,12 +11,9 @@ int		check_char(t_main *main)
 		y = 0;
 		while (main->game->map[x][y])
 		{
-			if (main->game->map[x][y] != ' ' && main->game->map[x][y] != '0'
-				&& main->game->map[x][y] != '1')
-			{
-				printf("Error\nWrong character in the map\n");
-				return (1);
-			}
+			if (main->game->map[x][y] != ' ' && main->game->map[x][y] != '\t' 
+				&& main->game->map[x][y] != '0' && main->game->map[x][y] != '1')
+				return (error_exit(main, CHARMAP));
 			y++;
 		}
 		x++;
@@ -32,14 +29,11 @@ int		check_format(t_main *main)
 	while (main->game->map[x])
 		x++;
 	if (x < 3)
-	{
-		printf("Error\nWrong map format\n");
-		return (1);
-	}
+		return (error_exit(main, FORMATMAP));
 	return (0);
 }
 
-int		check_comma_number(char *rgb)
+int		check_comma_number(t_main *main, char *rgb)
 {
 	int		comma;
 	int		i;
@@ -58,53 +52,45 @@ int		check_comma_number(char *rgb)
 					|| rgb[i + 1] == 9 || rgb[i + 1] == '\0'))
 					;
 				else
-				{
-					printf("Error\nWrong character in rgb floor/ceilling\n");
-					return (1);
-				}
+					return (error_exit(main, CHARRGB));
 			}
 			i++;
 		}
 		if (rgb[i] == ',')
 			comma++;
 		if (rgb[i] == ',' && rgb[i + 1] == '\0' && comma == 2)
-		{
-			printf("Error\nMissing number after comma in rgb floor/ceilling\n");
-			return (1);
-		}
+			return (error_exit(main, COMMARGB));
 		if (rgb[i] == '\0' && comma < 2)
-		{
-			printf("Error\nIncorrect number of number in rgb floor/ceilling\n");
-			return (1);
-		}
+			return (error_exit(main, NBRNBR));
 		if (rgb[i] != '\0')
 			i++;
 	}
 	if (comma > 2)
-	{
-		printf("Error\nIncorrect number of comma in rgb floor/ceilling \n");
-		return (1);
-	}
+		return (error_exit(main, NBRCOMMA));
 	return (0);
 }
 
 int		manage_file_map(t_main *main, char *mapname)
 {
-	if (check_file_name(mapname))
+	if (check_file_name(main, mapname))
 		return (-1);
     main->c_map->fd = open(mapname, O_RDONLY);
 	if (read_file(main))
+	{
+		close(main->c_map->fd);
 		return (-1);
+	}
+	parse_map(main);
+	close(main->c_map->fd);
 	if (check_format(main))
 		return (-1);
 	if (check_position(main))
 		return (-1);
 	if (check_char(main))
 		return (-1);
-	if (check_outline(main->game->map))
+	if (check_outline(main))
 		return (-1);
 	if (check_color(main))
 		return (-1);
-	close(main->c_map->fd);
 	return (0);
 }
