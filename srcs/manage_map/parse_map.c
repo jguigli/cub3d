@@ -1,30 +1,49 @@
 #include "../../includes/cub3d.h"
 
-char	*get_string_map(char *mapname)
+void	fill_map(t_main *main)
 {
-	char	*line;
-	char	*str;
-	int		fd;
+	size_t		x;
+	size_t		y;
 
-	fd = open(mapname, O_RDONLY);
-	line = get_next_line(fd);
-	str = malloc(sizeof(char));
-	if (!str)
-		return (NULL);
-	str[0] = '\0';
-	while (line)
+	x = 0;
+	printf("LA ?\n");
+	while (main->game->map[x])
 	{
-		str = ft_strjoin(str, line);
-		free (line);
-		line = get_next_line(fd);
+		y = 0;
+		while (main->game->map[x][y] == ' ')
+		{
+			main->game->map[x][y] = '1';
+			y++;
+		}
+		while (main->game->map[x][y])
+			y++;
+		if (ft_strlen(main->game->map[x]) < main->c_map->linesizemax)
+		{
+			while (y < main->c_map->linesizemax)
+			{
+				main->game->map[x][y] = '1';
+				y++;
+			}
+		}
+		x++;
 	}
-	free (line);
-	close(fd);
-	return (str);
+}
+
+void	affiche(t_main *main)
+{
+	int	x = 0;
+	while (main->game->map[x])
+	{
+		printf("%s\n", main->game->map[x]);
+		x++;
+	}
 }
 
 void	parse_map(t_main *main)
 {
-	main->game->map = ft_split(main->c_map->linejoin, '\n');
+	main->game->map = ft_split_map(main, main->c_map->linejoin);
+	printf("LA ?\n");
+	fill_map(main);
+	affiche(main);
 	free (main->c_map->linejoin);
 }

@@ -19,9 +19,6 @@ int		read_map(t_main *main)
 		if (main->c_map->line == NULL)
 			return (error_exit(MISSINGMAP));
 	}
-	main->c_map->linesize = ft_strlen(main->c_map->line);
-	if (main->c_map->linesize > main->c_map->linesizemax)
-		main->c_map->linesizemax = main->c_map->linesize;
 	main->c_map->linejoin = ft_strjoin(main->c_map->linejoin, main->c_map->line);
 	free (main->c_map->line);
 	main->c_map->line = get_next_line(main->c_map->fd);

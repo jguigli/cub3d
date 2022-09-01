@@ -1,7 +1,7 @@
-NO ./texture/eagle.xpm
+NO ./texture/bricks.xpm
 SO ./texture/planks.xpm
-WE ./texture/greystone.xpm
-EA ./texture/purplestone.xpm
+WE ./texture/gravel.xpm
+EA ./texture/tilledsoil.xpm
 
 F 135,253,0
 C 34,170,200

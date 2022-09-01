@@ -38,7 +38,7 @@
 # define FTEXMEN "Error\nFloor texture mentioned several times\n"
 # define CTEXMEN "Error\nCeilling texture mentioned several times\n"
 # define TEXOPT "Error\nWrong texture option in file\n"
-# define CHARMAP "Error\nWrong character in the map %d\n"
+# define CHARMAP "Error\nWrong character in the map\n"
 # define FORMATMAP "Error\nWrong map format\n"
 # define CHARRGB "Error\nWrong character in rgb floor/ceilling\n"
 # define COMMARGB "Error\nMissing number after comma in rgb floor/ceilling\n"
@@ -90,14 +90,11 @@ typedef struct s_map
 {
 	char	*line;
 	char	*linejoin;
-	int		length;
-	int		length2;
+	size_t	linesizemax;
+	size_t	linesize;
 	int		fd;
 	int		count_line;
-	int		line_max;
 	int		position;
-	int		exit;
-	int		collectible;
 }	t_map;
 
 typedef struct s_tex
@@ -202,14 +199,14 @@ t_xpm	*initialisation_struct_texture(void);
 t_tex	*initialisation_struct_tex(void);
 t_main	*initialisation_struct_main(void);
 void	create_window(t_main *main);
-int		check_file_name(t_main *main, char *mapname);
+int		check_file_name(char *mapname);
 int		draw_map(t_main *main);
 void	parse_map(t_main *main);
 int		read_file(t_main *main);
 int		check_texture(t_main *main);
 int		check_count_texture(t_main *main);
 int		manage_file_map(t_main *main, char *mapname);
-int		check_comma_number(t_main *main, char *rgb);
+int		check_comma_number(char *rgb);
 int		event_key(t_main *main);
 int		manage_key_press(int keysym, t_main *main);
 int		manage_key_release(int keysym, t_main *main);
@@ -247,8 +244,9 @@ void	my_mlx_pixel_put(t_main *main, int x, int y, int color);
 void	free_main(t_main *main);
 void	manage_mlx(t_main *main);
 void	init_mlx_ptr(t_main *main);
-int		error_exit(t_main *main, char *errormsg);
-int		error_exit_noinit(char *errormsg);
-void    exit_escape(t_main *main);
+int		error_exit(char *errormsg);
+int		exit_escape(t_main *main);
+char	**ft_split_map(t_main *main, char const *str);
+int		draw_minimap(t_main *main); //bonus
 
 #endif

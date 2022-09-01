@@ -9,10 +9,9 @@ t_map	*initialisation_struct_map(void)
 		return (NULL);
 	c_map->line = NULL;
 	c_map->linejoin = NULL;
-	c_map->linesize = 0;
-	c_map->linesizemax = 0;
 	c_map->fd = 0;
 	c_map->count_line = 0;
+	c_map->line_max = 0;
 	c_map->position = 0;
 	return (c_map);
 }
