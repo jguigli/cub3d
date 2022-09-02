@@ -29,7 +29,6 @@ static char	*get_word(char const *str, t_main *main, int i, char **liste)
 	j = 0;
 	while (str[i + j] && !(check_sep(str[i + j])))
 		j++;
-	printf("LA linemax = %ld\n", main->c_map->linesizemax);
 	dest = (char *)malloc(sizeof(char) * main->c_map->linesizemax + 1);
 	if (!dest)
 		return (ft_free(liste));

@@ -141,8 +141,8 @@ t_main	*initialisation_struct_main(void)
 	main = malloc(sizeof(t_main));
 	if (!main)
 		return (NULL);
-	main->scr_x = 1600; //(int)SCREEN_W;
-	main->scr_y = 1200; //(int)SCREEN_H;
+	main->scr_x = (int)SCREEN_W;
+	main->scr_y = (int)SCREEN_H;
 	main->c = 0;
 	main->f = 0;
 	main->c_map = initialisation_struct_map();

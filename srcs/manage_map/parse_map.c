@@ -6,18 +6,22 @@ void	fill_map(t_main *main)
 	size_t		y;
 
 	x = 0;
-	printf("LA ?\n");
 	while (main->game->map[x])
 	{
 		y = 0;
-		while (main->game->map[x][y] == ' ')
+		while (main->game->map[x][y])
 		{
-			main->game->map[x][y] = '1';
+			if (main->game->map[x][y] == ' ')
+				main->game->map[x][y] = '1';
 			y++;
 		}
-		while (main->game->map[x][y])
-			y++;
-		if (ft_strlen(main->game->map[x]) < main->c_map->linesizemax)
+		x++;
+	}
+	x = 0;
+	while (main->game->map[x])
+	{
+		y = ft_strlen(main->game->map[x]);
+		if (y < main->c_map->linesizemax)
 		{
 			while (y < main->c_map->linesizemax)
 			{
@@ -25,11 +29,12 @@ void	fill_map(t_main *main)
 				y++;
 			}
 		}
+		main->game->map[x][y] = '\0';
 		x++;
 	}
 }
 
-void	affiche(t_main *main)
+void	affiche(t_main *main) // A SUPP
 {
 	int	x = 0;
 	while (main->game->map[x])
@@ -42,7 +47,6 @@ void	affiche(t_main *main)
 void	parse_map(t_main *main)
 {
 	main->game->map = ft_split_map(main, main->c_map->linejoin);
-	printf("LA ?\n");
 	fill_map(main);
 	affiche(main);
 	free (main->c_map->linejoin);

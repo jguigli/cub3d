@@ -29,25 +29,13 @@ int	check_first_last_row(char *map)
 int		check_zero(char **map, int x, int y)
 {
 	if (map[x - 1][y] != '1' && map[x - 1][y] != '0')
-	{
-		printf("la et x = %d et y = %d\t x-1 = %d\n", x, y, x - 1);
 		return (1);
-	}
 	if (map[x + 1][y] != '1' && map[x + 1][y] != '0')
-	{
-		printf("la et x = %d et y = %d\t x+1 = %d\n", x, y, x + 1);
 		return (1);
-	}
 	if (map[x][y - 1] != '1' && map[x][y - 1] != '0')
-	{
-		printf("la et x = %d et y = %d\t y-1 = %d\n", x, y, y - 1);
 		return (1);
-	}
 	if (map[x][y + 1] != '1' && map[x][y + 1] != '0')
-	{
-		printf("la et x = %d et y = %d\t y+1 = %d\n", x, y, y + 1);
 		return (1);
-	}
 	return (0);
 }
 
@@ -57,7 +45,8 @@ int		check_outline(t_main *main)
 	size_t	y;
 
 	x = 1;
-	if (check_first_last_row(main->game->map[0]) || check_first_last_row(main->game->map[ft_strlen_double(main->game->map) - 1]))
+	if (check_first_last_row(main->game->map[0])
+		|| check_first_last_row(main->game->map[ft_strlen_double(main->game->map) - 1]))
 		return(error_exit(NMAPCLOSED));
 	while (x < ft_strlen_double(main->game->map) - 1)
 	{

@@ -17,7 +17,6 @@ void	manage_mlx(t_main *main)
 {
 	mlx_hook(main->game->win_ptr, 2, 1L << 0, manage_key_press, main);
 	mlx_loop_hook(main->game->mlx_ptr, draw_map, main);
-	//mlx_loop_hook(main->game->mlx_ptr, draw_minimap, main);
 	mlx_hook(main->game->win_ptr, 3, 1L << 1, manage_key_release, main);
 	mlx_hook(main->game->win_ptr, DestroyNotify,
 		StructureNotifyMask, exit_escape, main);

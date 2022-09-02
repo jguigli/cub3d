@@ -43,11 +43,11 @@ int	draw_minimap(t_main *main)
 {
 	int		x;
 	int		y;
-	int     colorwall;
+	// int     colorwall;
 	int     colorfloor;
 
 
-	colorwall = 0xFF0000;
+	// colorwall = 0xFF0000;
 	colorfloor = 0x080808;
 	y = 0;
 	while (main->game->map[y])
@@ -55,8 +55,8 @@ int	draw_minimap(t_main *main)
 		x = 0;
 		while (main->game->map[y][x])
 		{
-			if (main->game->map[y][x] == '1')
-				draw_square(main, &colorwall, x, y);
+			// if (main->game->map[y][x] == '1')
+			// 	draw_square(main, &colorwall, x, y);
 			if (main->game->map[y][x] == '0')
 				draw_square(main, &colorfloor, x, y);
 			x++;

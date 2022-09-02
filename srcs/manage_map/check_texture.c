@@ -47,7 +47,7 @@ char	*crop_texture_high(t_main *main)
 	return (str);
 }
 
-int		check_texture(t_main *main)
+int		check_texture(t_main *main) //A DECOUPER
 {
 	if (!ft_strncmp(main->c_map->line, "NO ", 3))
 	{

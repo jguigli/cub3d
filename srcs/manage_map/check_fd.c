@@ -5,11 +5,17 @@ int	check_file_name(char *mapname)
 	char	*rep;
 	int		fd;
 
-    // check si c'est un dossier
+	fd = open(mapname, __O_DIRECTORY);
+	if (fd > 0)
+	{
+		close(fd);
+		return (error_exit(BADFD));
+	}
+	close(fd);
 	fd = open(mapname, O_RDONLY);
 	if (fd < 0)
 	{
-		printf("fd = %d et mapname = %s\n", fd, mapname);
+		close(fd);
 		return (error_exit(BADFD));
 	}
 	close(fd);

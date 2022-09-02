@@ -18,7 +18,7 @@
 # define BUFFER_SIZE 50
 
 # define SCREEN_H 1200
-# define SCREEN_W 1400
+# define SCREEN_W 1600
 # define IMG_W 32
 # define IMG_H 32
 
