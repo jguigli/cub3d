@@ -18,7 +18,7 @@ void	display_texture(t_main *main, int x)
 	if (y <= main->ray->drawend)
 		texture_calculation(main, x);
 	y = main->ray->drawend;
-	while (y < main->scr_y - 2)
+	while (y < main->scr_y)
 		main->img->addr[y++ * main->img->line_len / 4 + x] = main->game->color_f;
 }
 

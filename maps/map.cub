@@ -1,11 +1,15 @@
+
 NO ./texture/bricks.xpm
+
 SO ./texture/planks.xpm
+
 WE ./texture/gravel.xpm
+
 EA ./texture/tilledsoil.xpm
 
-F 48,48,48
-C 3,34,76
+F           48     ,     48    ,    48        
 
+C 3,34,76
 
 
 

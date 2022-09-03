@@ -92,5 +92,7 @@ int		manage_file_map(t_main *main, char *mapname)
 		return (-1);
 	if (check_color(main))
 		return (-1);
+	fill_map(main);
+	affiche(main);
 	return (0);
 }

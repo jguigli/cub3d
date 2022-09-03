@@ -14,6 +14,7 @@ int	event_key(t_main *main)
 		rotate_left(main);
 	else if (main->game->move_rotate_right == 1)
 		rotate_right(main);
+	//rotate_mouse(main);
 	return (0);
 }
 

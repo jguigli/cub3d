@@ -53,27 +53,31 @@
 # define NMAPCLOSED "Error\nThe map is not closed\n"
 # define FAILXPM "Error\nFail xpm to image\n"
 # define FAILADDR "Error\nFail addr texture\n"
+# define EMPTYSPACE "Error\nSpace on empty line\n"
+# define SPACEMAP "Error\nSpace or linefeed not allowed in map\n"
+# define EMPTYFD "Error\nEmpty file\n"
+# define RGBSPACE "Error\nSpace in rgb number\n"
 # define CRGBSCALE "Error\nOne or several numbers of ceilling rgb are not in the right scale\n"
 # define FRGBSCALE "Error\nOne or several numbers of floor rgb are not in the right scale\n"
 
 /*AZERYTY*/
-/*
+
 # define ROTATE_LEFT 65361
 # define ROTATE_RIGHT 65363
 # define FORWARD_W_Z 122
 # define BACK_S_S 115
 # define RIGHT_D_D 100
 # define LEFT_A_Q 113
-*/
-/*QWERTY*/
 
+/*QWERTY*/
+/*
 # define ROTATE_LEFT 65361
 # define ROTATE_RIGHT 65363
 # define FORWARD_W_Z 119
 # define BACK_S_S 115
 # define RIGHT_D_D 100
 # define LEFT_A_Q 97
-
+*/
 
 typedef struct s_xpm
 {
@@ -247,6 +251,11 @@ void	init_mlx_ptr(t_main *main);
 int		error_exit(char *errormsg);
 int		exit_escape(t_main *main);
 char	**ft_split_map(t_main *main, char const *str);
+void	fill_map(t_main *main);
 int		draw_minimap(t_main *main); //bonus
+void	rotate_mouse(t_main *main); //bonus
+void    rotate_left_mouse(t_main *main, double rotaspeed); //bonus
+void    rotate_right_mouse(t_main *main, double rotaspeed); //bonus
+void	affiche(t_main *main); // A SUPP
 
 #endif

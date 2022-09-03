@@ -19,9 +19,6 @@ int	main(int argc, char **argv, char **env)
 	create_window(main);
 	draw_map(main);
 	manage_mlx(main);
-	mlx_destroy_image(main->game->mlx_ptr, main->img->mlx_img);
-	mlx_destroy_window(main->game->mlx_ptr, main->game->win_ptr);
-	mlx_destroy_display(main->game->mlx_ptr);
-	free_main(main);
+	exit_escape(main);
 	return (0);
 }

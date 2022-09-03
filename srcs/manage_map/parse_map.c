@@ -47,7 +47,6 @@ void	affiche(t_main *main) // A SUPP
 void	parse_map(t_main *main)
 {
 	main->game->map = ft_split_map(main, main->c_map->linejoin);
-	fill_map(main);
-	affiche(main);
+	// affiche(main);
 	free (main->c_map->linejoin);
 }

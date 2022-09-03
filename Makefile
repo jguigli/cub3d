@@ -21,6 +21,7 @@ SRC_M = ./srcs/main.c \
 		./srcs/manage_exit/free.c \
 		./gnl/get_next_line.c \
 		./bonus/minimap.c \
+		./bonus/rotate_mouse.c \
 		#./srcs/manage_error/check_error.c \
 		./srcs/manage_game/close_game.c \
 		./srcs/manage_game/launch_game.c \
