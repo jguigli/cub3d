@@ -1,4 +1,4 @@
-#include "../../includes/cub3d.h"	
+#include "../../includes/cub3d_bonus.h"
 
 int	get_texture(t_main *main)
 {

@@ -1,4 +1,4 @@
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 int	check_color_rgb_floor(t_main *main, int i, int y, int s)
 {

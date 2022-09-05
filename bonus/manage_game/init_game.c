@@ -1,4 +1,4 @@
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 t_xpm	*initialisation_struct_xpm(void)
 {

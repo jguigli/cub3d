@@ -1,4 +1,4 @@
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 void	stock_position_north(int x, int y, t_main *main)
 {

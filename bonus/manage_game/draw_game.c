@@ -1,4 +1,4 @@
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 void	display_texture(t_main *main, int x)
 {
@@ -32,6 +32,7 @@ int	draw_map(t_main *main)
 		x++;
 	}
 	event_key(main);
+	draw_minimap(main);
 	mlx_put_image_to_window(main->game->mlx_ptr,
 		main->game->win_ptr, main->img->mlx_img, 0, 0);
 	return (0);

@@ -2,14 +2,17 @@ SRC_M = ./srcs/main.c \
 		./srcs/manage_map/check_closemap.c \
 		./srcs/manage_map/manage_map.c \
 		./srcs/manage_map/check_color.c \
+		./srcs/manage_map/check_color_utils.c \
 		./srcs/manage_map/check_position.c \
 		./srcs/manage_map/check_texture.c \
+		./srcs/manage_map/check_texture2.c \
 		./srcs/manage_map/read_file.c \
 		./srcs/manage_map/parse_map.c \
 		./srcs/manage_map/split_map.c \
 		./srcs/manage_mlx/create_window.c \
 		./srcs/manage_mlx/init_ptr.c \
 		./srcs/manage_game/init_game.c \
+		./srcs/manage_game/init_game2.c \
 		./srcs/manage_game/raycast.c \
 		./srcs/manage_game/key_move.c \
 		./srcs/manage_game/move_player.c \
@@ -20,14 +23,34 @@ SRC_M = ./srcs/main.c \
 		./srcs/manage_exit/exit.c \
 		./srcs/manage_exit/free.c \
 		./gnl/get_next_line.c \
-		./bonus/minimap.c \
-		./bonus/rotate_mouse.c \
-		#./srcs/manage_error/check_error.c \
-		./srcs/manage_game/close_game.c \
-		./srcs/manage_game/launch_game.c \
-		./srcs/manage_map/check_map2.c \
 
-SRC_B =
+SRC_B = ./bonus/main.c \
+		./bonus/manage_map/check_closemap.c \
+		./bonus/manage_map/manage_map.c \
+		./bonus/manage_map/check_color.c \
+		./bonus/manage_map/check_color_utils.c \
+		./bonus/manage_map/check_position.c \
+		./bonus/manage_map/check_texture.c \
+		./bonus/manage_map/check_texture2.c \
+		./bonus/manage_map/read_file.c \
+		./bonus/manage_map/parse_map.c \
+		./bonus/manage_map/split_map.c \
+		./bonus/manage_mlx/create_window.c \
+		./bonus/manage_mlx/init_ptr.c \
+		./bonus/manage_game/init_game.c \
+		./bonus/manage_game/init_game2.c \
+		./bonus/manage_game/raycast.c \
+		./bonus/manage_game/key_move.c \
+		./bonus/manage_game/move_player.c \
+		./bonus/manage_game/rotate_player.c \
+		./bonus/manage_game/draw_game.c \
+		./bonus/manage_game/texture.c \
+		./bonus/manage_map/check_fd.c \
+		./bonus/manage_exit/exit.c \
+		./bonus/manage_exit/free.c \
+		./bonus/manage_game/minimap.c \
+		./bonus/manage_game/rotate_mouse.c \
+		./gnl/get_next_line.c \
 
 
 HEADER			=	includes/cub3d.h

@@ -135,6 +135,7 @@ typedef struct s_data
 	int		move_right;
 	int		move_rotate_left;
 	int		move_rotate_right;
+	int		mouse;
 }	t_data;
 
 typedef struct s_ray
@@ -254,5 +255,9 @@ int		check_color_rgb_floor(t_main *main, int i, int y, int s);
 int		exit_texture(t_main *main);
 int		free_gnl_msg(t_main *main, char *msg);
 int		free_gnl_simple(t_main *main);
+int		draw_minimap(t_main *main);
+void	rotate_mouse(t_main *main);
+void	rotate_left_mouse(t_main *main, double rotaspeed);
+void	rotate_right_mouse(t_main *main, double rotaspeed);
 
 #endif
