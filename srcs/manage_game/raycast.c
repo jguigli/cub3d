@@ -14,7 +14,7 @@
 
 void	init_raycast(t_main *main, int x)
 {
-	main->ray->camerax = 2.0 * x / (double)main->scr_x - 1;
+	main->ray->camerax = 2 * x / (double)main->scr_x - 1;
 	main->ray->mapx = (int)main->ray->posx;
 	main->ray->mapy = (int)main->ray->posy;
 	main->ray->raydirx = main->ray->dirx + main->ray->planx
@@ -82,10 +82,10 @@ void	wall_dist(t_main *main)
 	else
 		main->ray->perpwalldist = main->ray->sidedisty - main->ray->deltadisty;
 	main->ray->lineheight = (int)(main->scr_y / main->ray->perpwalldist);
-	main->ray->drawstart = (-main->ray->lineheight / 2) + (main->scr_y / 2);
-	if (main->ray->drawstart < 0)
+	main->ray->drawstart = -main->ray->lineheight / 2 + main->scr_y / 2;
+	if (main->ray->drawstart < 0 || main->ray->drawstart > main->scr_y)
 		main->ray->drawstart = 0;
-	main->ray->drawend = (main->ray->lineheight / 2) + (main->scr_y / 2);
-	if (main->ray->drawend >= main->scr_y)
+	main->ray->drawend = main->ray->lineheight / 2 + main->scr_y / 2;
+	if (main->ray->drawend >= main->scr_y || main->ray->drawend < 0)
 		main->ray->drawend = main->scr_y - 1;
 }

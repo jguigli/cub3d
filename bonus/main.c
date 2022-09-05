@@ -27,7 +27,6 @@ int	main(int argc, char **argv, char **env)
 	{
 		mlx_destroy_display(main->game->mlx_ptr);
 		free_main(main);
-
 		return (-1);
 	}
 	create_window(main);

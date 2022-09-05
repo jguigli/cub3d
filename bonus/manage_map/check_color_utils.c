@@ -53,3 +53,13 @@ int	free_gnl_simple(t_main *main)
 	}
 	return (1);
 }
+
+void	fill_with_space(t_main *main, char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < main->c_map->linesizemax)
+		str[i++] = ' ';
+	str[i] = '\0';
+}

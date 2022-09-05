@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # include "../mlx_linux/mlx.h"
 # include "../mlx_linux/mlx_int.h"
@@ -80,7 +80,6 @@
 # define BACK_S_S 115
 # define RIGHT_D_D 100
 # define LEFT_A_Q 97
-
 
 typedef struct s_xpm
 {
@@ -271,5 +270,6 @@ int		draw_minimap(t_main *main);
 void	rotate_mouse(t_main *main);
 void	rotate_left_mouse(t_main *main, double rotaspeed);
 void	rotate_right_mouse(t_main *main, double rotaspeed);
+void	fill_with_space(t_main *main, char *str);
 
 #endif

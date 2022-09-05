@@ -44,6 +44,7 @@ static char	*get_word(char const *str, t_main *main, int i, char **liste)
 	dest = (char *)malloc(sizeof(char) * main->c_map->linesizemax + 1);
 	if (!dest)
 		return (ft_free(liste));
+	fill_with_space(main, dest);
 	j = 0;
 	while (str[i + j] && !(check_sep(str[i + j])))
 	{
