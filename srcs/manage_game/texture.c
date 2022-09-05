@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   texture.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jguigli <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/05 18:47:12 by jguigli           #+#    #+#             */
+/*   Updated: 2022/09/05 18:47:13 by jguigli          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3d.h"	
 
 int	get_texture(t_main *main)
@@ -91,12 +103,12 @@ void	display_color_texture(t_main *main, int x)
 		/ main->ray->lineheight;
 	main->tex->texpos = (main->ray->drawstart - main->scr_y / 2
 			+ main->ray->lineheight / 2) * main->tex->step;
-	while (y <= main->ray->drawend)
+	while (y >= main->ray->drawstart && y < main->ray->drawend)
 	{
 		main->tex->texy = (int)main->tex->texpos
 			& (main->texture[main->tex->texdir].height - 1);
 		main->tex->texpos += main->tex->step;
-		if (y < main->scr_y && x < main->scr_x)
+		if (y < main->scr_y && x < main->scr_x && y > 0 && x > 0)
 			main->img->addr[y * main->img->line_len / 4 + x]
 				= main->texture[main->tex->texdir].addr[main->tex->texy
 				* main->texture[main->tex->texdir].height + main->tex->texx];

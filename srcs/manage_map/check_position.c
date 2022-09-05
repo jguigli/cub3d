@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_position.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jguigli <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/05 18:48:18 by jguigli           #+#    #+#             */
+/*   Updated: 2022/09/05 18:48:19 by jguigli          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3d.h"
 
 void	stock_position_north(int x, int y, t_main *main)
 {
 	main->game->map[x][y] = '0';
-	main->ray->posx = x;
-	main->ray->posy = y;
+	main->ray->posx = (double)x + 0.5;
+	main->ray->posy = (double)y + 0.5;
 	main->ray->dirx = -1;
 	main->ray->diry = 0;
 	main->ray->planx = 0;
@@ -15,8 +27,8 @@ void	stock_position_north(int x, int y, t_main *main)
 void	stock_position_south(int x, int y, t_main *main)
 {
 	main->game->map[x][y] = '0';
-	main->ray->posx = x;
-	main->ray->posy = y;
+	main->ray->posx = (double)x + 0.5;
+	main->ray->posy = (double)y + 0.5;
 	main->ray->dirx = 1;
 	main->ray->diry = 0;
 	main->ray->planx = 0;
@@ -27,8 +39,8 @@ void	stock_position_south(int x, int y, t_main *main)
 void	stock_position_east(int x, int y, t_main *main)
 {
 	main->game->map[x][y] = '0';
-	main->ray->posx = x;
-	main->ray->posy = y;
+	main->ray->posx = (double)x + 0.5;
+	main->ray->posy = (double)y + 0.5;
 	main->ray->dirx = 0;
 	main->ray->diry = 1;
 	main->ray->planx = 0.66;
@@ -39,8 +51,8 @@ void	stock_position_east(int x, int y, t_main *main)
 void	stock_position_west(int x, int y, t_main *main)
 {
 	main->game->map[x][y] = '0';
-	main->ray->posx = x;
-	main->ray->posy = y;
+	main->ray->posx = (double)x + 0.5;
+	main->ray->posy = (double)y + 0.5;
 	main->ray->dirx = 0;
 	main->ray->diry = -1;
 	main->ray->planx = -0.66;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jguigli <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/05 18:43:48 by jguigli           #+#    #+#             */
+/*   Updated: 2022/09/05 18:43:50 by jguigli          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 int	main(int argc, char **argv, char **env)
@@ -15,7 +27,6 @@ int	main(int argc, char **argv, char **env)
 	{
 		mlx_destroy_display(main->game->mlx_ptr);
 		free_main(main);
-
 		return (-1);
 	}
 	create_window(main);
