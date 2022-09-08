@@ -62,6 +62,7 @@
 # define RGBSPACE "Error\nSpace in rgb number\n"
 # define CRGBSCALE "Error\nCeilling rgb are not in the right scale\n"
 # define FRGBSCALE "Error\nFloor rgb are not in the right scale\n"
+# define MISSRGB "Error\nMissing at least one rgb\n"
 
 /*AZERYTY*/
 
@@ -266,5 +267,6 @@ int		exit_texture(t_main *main);
 int		free_gnl_msg(t_main *main, char *msg);
 int		free_gnl_simple(t_main *main);
 void	fill_with_space(t_main *main, char *str);
+int		have_only_space(char *line);
 
 #endif

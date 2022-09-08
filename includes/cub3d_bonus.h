@@ -62,6 +62,7 @@
 # define RGBSPACE "Error\nSpace in rgb number\n"
 # define CRGBSCALE "Error\nCeilling rgb are not in the right scale\n"
 # define FRGBSCALE "Error\nFloor rgb are not in the right scale\n"
+# define MISSRGB "Error\nMissing at least one rgb\n"
 
 /*AZERYTY*/
 /*
@@ -271,5 +272,6 @@ void	rotate_mouse(t_main *main);
 void	rotate_left_mouse(t_main *main, double rotaspeed);
 void	rotate_right_mouse(t_main *main, double rotaspeed);
 void	fill_with_space(t_main *main, char *str);
+int		have_only_space(char *line);
 
 #endif

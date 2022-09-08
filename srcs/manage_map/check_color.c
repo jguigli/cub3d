@@ -17,6 +17,8 @@ int	check_color_rgb_floor(t_main *main, int i, int y, int s)
 	char	*temp;
 
 	temp = ft_substr(main->game->tex_f, y, i - y);
+	if (i == y || have_only_space(temp))
+		return (free (temp), error_exit(MISSRGB));
 	temp = ft_strtrim(temp, " ");
 	if (space_inside(temp))
 		return (free (temp), error_exit(RGBSPACE));
@@ -31,6 +33,8 @@ int	check_color_rgb_ceilling(t_main *main, int i, int y, int s)
 {
 	char	*temp;
 
+	if (i == y)
+		return (error_exit(MISSRGB));
 	temp = ft_substr(main->game->tex_c, y, i - y);
 	temp = ft_strtrim(temp, " ");
 	if (space_inside(temp))
