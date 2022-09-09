@@ -100,6 +100,8 @@ int	manage_file_map(t_main *main, char *mapname)
 		return (-1);
 	}
 	parse_map(main);
+	if (check_map_4_minimap(main))
+		return (-1);
 	close(main->c_map->fd);
 	if (check_format(main))
 		return (-1);

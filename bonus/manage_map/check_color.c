@@ -22,6 +22,8 @@ int	check_color_rgb_floor(t_main *main, int i, int y, int s)
 	temp = ft_strtrim(temp, " ");
 	if (space_inside(temp))
 		return (free (temp), error_exit(RGBSPACE));
+	if (ft_strlen(temp) > 3)
+		return (free (temp), error_exit(FRGBSCALE));
 	main->game->rgb_f[s] = ft_atoi(temp);
 	free (temp);
 	return (0);
@@ -37,6 +39,8 @@ int	check_color_rgb_ceilling(t_main *main, int i, int y, int s)
 	temp = ft_strtrim(temp, " ");
 	if (space_inside(temp))
 		return (free (temp), error_exit(RGBSPACE));
+	if (ft_strlen(temp) > 3)
+		return (free (temp), error_exit(FRGBSCALE));
 	main->game->rgb_c[s] = ft_atoi(temp);
 	free (temp);
 	return (0);

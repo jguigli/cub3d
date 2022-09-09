@@ -63,6 +63,7 @@
 # define CRGBSCALE "Error\nCeilling rgb are not in the right scale\n"
 # define FRGBSCALE "Error\nFloor rgb are not in the right scale\n"
 # define MISSRGB "Error\nMissing at least one rgb\n"
+# define SCALEMINIMAP "Error\nMap too big for display the minimap\n"
 
 /*AZERYTY*/
 /*
@@ -273,5 +274,6 @@ void	rotate_left_mouse(t_main *main, double rotaspeed);
 void	rotate_right_mouse(t_main *main, double rotaspeed);
 void	fill_with_space(t_main *main, char *str);
 int		have_only_space(char *line);
+int		check_map_4_minimap(t_main *main);
 
 #endif

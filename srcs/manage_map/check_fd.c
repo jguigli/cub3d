@@ -20,10 +20,9 @@ int	check_file_name(char *mapname)
 	fd = open(mapname, __O_DIRECTORY);
 	if (fd > 0)
 		return (close(fd), error_exit(BADFD));
-	close(fd);
 	fd = open(mapname, O_RDONLY);
 	if (fd < 0)
-		return (close(fd), error_exit(BADFD));
+		return (error_exit(BADFD));
 	close(fd);
 	rep = ft_strrchr(mapname, '.');
 	if (rep == NULL || ft_strcmp(rep, ".cub") != 0)

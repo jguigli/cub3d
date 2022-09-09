@@ -12,6 +12,20 @@
 
 #include "../../includes/cub3d_bonus.h"
 
+int	check_map_4_minimap(t_main *main)
+{
+	int	i;
+
+	i = 0;
+	if (main->c_map->linesizemax > 100)
+		return (error_exit(SCALEMINIMAP));
+	while (main->game->map[i])
+		i++;
+	if (i > 50)
+		return (error_exit(SCALEMINIMAP));
+	return (0);
+}
+
 void	draw_player(t_main *main)
 {
 	int		pixelx;
